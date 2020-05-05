@@ -1,4 +1,4 @@
-package cn.renda.service.rendaserviceprovider;
+package cn.renda.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

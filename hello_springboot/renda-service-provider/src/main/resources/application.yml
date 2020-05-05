@@ -2,8 +2,8 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/renda #你学习mybatis时，使用的数据库地址
+    url: jdbc:mysql://localhost:3306/renda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: root
 mybatis:
-  type-aliases-package: cn.itcast.service.pojo
+  type-aliases-package: cn.renda.service.pojo
