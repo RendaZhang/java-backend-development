@@ -2,9 +2,8 @@ server:
   port: 10086 # 端口
 spring:
   application:
-    name: eureka-server # 应用名称，会在Eureka中显示
+    name: eureka-server # 服务名称，会在Eureka中显示
 eureka:
   client:
-    service-url: # EurekaServer的地址，现在是自己的地址，如果是集群，需要加上其它Server的地址。
-      defaultZone: http://127.0.0.1:${server.port}/eureka
-
+    service-url: # EurekaServer的地址，自己的地址，如果是集群，需要写其它Server的地址。
+      defaultZone: http://127.0.0.1:10087/eureka
