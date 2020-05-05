@@ -7,15 +7,15 @@
 
 ### 文件简介：
 
-+ hello_jdbcoracle: Oracle数据库的简单连接配置测试获取数据。
++ hello_jdbcoracle: Oracle数据库的连接jdbc配置测试获取数据，存储过程，函数调用。
 + hello_jndi: 使用jndi作为MyBatis的数据源类型
-+ hello_maven: 搭建Maven项目的简单测试
-+ hello_mybatis: 使用MyBatis框架的简单测试
++ hello_maven: 测试Maven项目的功能
++ hello_mybatis: 使用MyBatis框架，MySql数据库，InnoDB存储引擎
 + hello_spring: 测试Spring框架的IoC和AOP功能
 + hello_springboot: 整合SpringBoot和SpringCloud微服务框架
 + hello_springmvc: 使用SpringMVC框架
 + hello_ssm: 整合Spring, SpringMCV, MyBatis三大框架
-+ IntelliJ_IDEA: 简单的杂项测试
-+ RendaTest: Idea的模块化测试
++ IntelliJ_IDEA: 混合练习。
++ RendaTest: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
 
 
