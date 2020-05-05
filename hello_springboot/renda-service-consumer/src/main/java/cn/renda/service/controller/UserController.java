@@ -1,9 +1,8 @@
 package cn.renda.service.controller;
 
-import cn.renda.service.pojo.User;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("consumer/user")
+@DefaultProperties(defaultFallback = "fallBackMethod") // 指定一个类的全局熔断方法
 public class UserController {
 
     @Autowired
@@ -27,10 +27,11 @@ public class UserController {
 /*    @Autowired
     private DiscoveryClient discoveryClient; // eureka客户端，可以获取到eureka中服务的信息*/
 
-
     @GetMapping
     @ResponseBody
-    public User queryUserById(@RequestParam("id") Long id){
+    // @HystrixCommand(fallbackMethod = "queryUserByIdFallBack")
+    @HystrixCommand // 标记该方法需要熔断
+    public String queryUserById(@RequestParam("id") Long id){
 /*        // Get Server Instance(s) from Eureka Server
         List<ServiceInstance> instances = discoveryClient.getInstances("service-provider");
         // Get the first instance
@@ -38,11 +39,31 @@ public class UserController {
         // Acquire the ip address and port number, concatenate as the server address.
         String baseUrl = "http://" + instance.getHost() + ":" + instance.getPort() + "/user/" + id;*/
 
-        // Use Ribbon Load-balanced function to acquire service
-        String baseUrl = "http://service-provider/user/" + id;
+        // 触发熔断机制
+        if(id == 3){
+            throw new RuntimeException("Server is busy now");
+        }
 
-        User user = this.restTemplate.getForObject(baseUrl, User.class);
-        return user;
+        // Use Ribbon Load-balanced function to acquire service
+        return this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
+    }
+
+    /**
+     * 熔断方法
+     * @param id 和被熔断的方法参数列表一致
+     * @return 返回值要和被熔断的方法的返回值一致
+     */
+    public String queryUserByIdFallBack(Long id){
+        return "Server is Busy, Please Try again Later. 服务器繁忙，请稍后再试！";
+    }
+
+    /**
+     * 类的默认熔断方法
+     * 熔断方法不需要参数
+     * @return 返回值要和被熔断的方法的返回值一致
+     */
+    public String fallBackMethod(){
+        return "类的默认熔断：请求繁忙，请稍后再试！";
     }
 
 }

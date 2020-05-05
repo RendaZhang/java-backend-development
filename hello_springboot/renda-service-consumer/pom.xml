@@ -23,6 +23,12 @@
 	</properties>
 
 	<dependencies>
+        <!--配置Hystrix熔断-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
         <!-- Eureka客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
