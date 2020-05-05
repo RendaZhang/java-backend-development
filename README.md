@@ -15,7 +15,7 @@
 + hello_springboot: 整合SpringBoot和SpringCloud微服务框架
 + hello_springmvc: 使用SpringMVC框架
 + hello_ssm: 整合Spring, SpringMCV, MyBatis三大框架
-+ IntelliJ_IDEA: 杂项测试
-+ RendaTest: Idea的模块化, Tomcat, Redis内存数据库测试
++ IntelliJ_IDEA: 混合练习。
++ RendaTest: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
 
 
