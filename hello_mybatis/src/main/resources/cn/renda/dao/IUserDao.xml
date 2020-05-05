@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.renda.dao.IUserDao">
+    <select id="findAll" resultType="user">
+        SELECT * FROM user;
+    </select>
+
+    <insert id="saveUser" parameterType="user">
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            SELECT last_insert_id();
+        </selectKey>
+        INSERT INTO user(username, address, sex, birthday)
+        VALUES (#{username},#{address},#{sex},#{birthday});
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE user SET
+        username=#{username},
+        address=#{address},
+        sex=#{sex},
+        birthday=#{birthday}
+        WHERE id=#{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="integer">
+        DELETE FROM user WHERE id=#{userId};
+    </delete>
+
+    <select id="findUserById" parameterType="integer" resultType="user">
+        SELECT * FROM user WHERE id=#{userId};
+    </select>
+
+    <select id="findByName" parameterType="string" resultType="user">
+        SELECT * FROM user WHERE username LIKE #{name};
+    </select>
+
+    <select id="findTotal" resultType="int">
+        SELECT COUNT(id) FROM user;
+    </select>
+
+    <select id="findUserByVo" parameterType="queryVo" resultType="user">
+        SELECT * FROM user WHERE username LIKE #{user.username}
+    </select>
+</mapper>
