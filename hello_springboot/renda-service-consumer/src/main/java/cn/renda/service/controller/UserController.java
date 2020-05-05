@@ -24,19 +24,23 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private DiscoveryClient discoveryClient; // eureka客户端，可以获取到eureka中服务的信息
+/*    @Autowired
+    private DiscoveryClient discoveryClient; // eureka客户端，可以获取到eureka中服务的信息*/
 
 
     @GetMapping
     @ResponseBody
     public User queryUserById(@RequestParam("id") Long id){
-        // Get Server Instance(s) from Eureka Server
+/*        // Get Server Instance(s) from Eureka Server
         List<ServiceInstance> instances = discoveryClient.getInstances("service-provider");
         // Get the first instance
         ServiceInstance instance = instances.get(0);
         // Acquire the ip address and port number, concatenate as the server address.
-        String baseUrl = "http://" + instance.getHost() + ":" + instance.getPort() + "/user/" + id;
+        String baseUrl = "http://" + instance.getHost() + ":" + instance.getPort() + "/user/" + id;*/
+
+        // Use Ribbon Load-balanced function to acquire service
+        String baseUrl = "http://service-provider/user/" + id;
+
         User user = this.restTemplate.getForObject(baseUrl, User.class);
         return user;
     }
