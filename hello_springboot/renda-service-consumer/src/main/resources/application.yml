@@ -7,7 +7,20 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:10086/eureka,http://127.0.0.1:10087/eurek
-    registry-fetch-interval-seconds: 5 # ��������ʹ��Ĭ��ֵ�������׶ε�СΪ�˿��ٵõ���������״̬
+    registry-fetch-interval-seconds: 5 # 生产环境使用默认值，开发阶段调小为了快速得到服务最新状态
 service-provider:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # Robbin�ĸ��ؾ�����ԣ�Ĭ����RoundRobinRule
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # Robbin的负载均衡策略，默认是RoundRobinRule
+feign:
+  hystrix:
+    enabled: true # 开启Feign的熔断功能
+  compression:
+    request:
+      enabled: true # 开启请求压缩
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型，此处为默认值
+      min-request-size: 2048 # 设置触发压缩的大小下限，此处为默认值
+    response:
+      enabled: true # 开启响应压缩
+logging:
+  level:
+    cn.renda: debug

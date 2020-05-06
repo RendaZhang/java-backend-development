@@ -23,6 +23,12 @@
 	</properties>
 
 	<dependencies>
+		<!--配置OpenFeign客戶端-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
         <!--配置Hystrix熔断-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
