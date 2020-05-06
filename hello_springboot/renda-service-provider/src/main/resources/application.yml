@@ -13,7 +13,7 @@ mybatis:
 eureka:
   client:
     service-url: # EurekaServer地址
-      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eurek
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
   instance: # 生产阶段使用默认值即可，开发阶段调小以方便调试
     lease-expiration-duration-in-seconds: 10 # 10秒即过期，服务续约间隔
     lease-renewal-interval-in-seconds: 5 # 5秒一次心跳，服务失效时间

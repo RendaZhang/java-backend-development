@@ -1,0 +1,45 @@
+server:
+  port: 10010 #服务端口
+spring:
+  application:
+    name: api-gateway #指定服务名
+  cloud:
+    gateway:
+      routes:
+      - id: service-provider-route # 这里是路由id，随意写
+        uri: lb://SERVICE-PROVIDER # 映射路径对应的实际url地址
+        predicates:
+        - Path=/service-provider/** # 这里是映射路径
+        filters:
+        - name: Hystrix
+          args:
+            name: fallbackCmdA
+            fallbackUri: forward:/fallbackA
+        - RewritePath=/service-provider(?<segment>/?.*), $\{segment}
+      discovery:
+        locator:
+          enabled: true  # 开启为注册到Eureka
+          lowerCaseServiceId: true
+eureka: # 增加Eureka的信息
+  client:
+    registry-fetch-interval-seconds: 5 # 获取服务列表的周期：5s
+    service-url: # EurekaServer地址
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # 设置hystrix的超时时间为6000ms
+    fallbackCmdA:
+      execution:
+        isolation:
+          thread:
+            timoutInMilliseconds: 5000 # 单独设置Hystrix的commandKey的超时时间
+
+logging: # Enable Log to trace the gateway process properly 为GateWay开启日志
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
