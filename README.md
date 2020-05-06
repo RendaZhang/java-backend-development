@@ -17,5 +17,7 @@
 + hello_ssm: 整合Spring, SpringMCV, MyBatis三大框架
 + IntelliJ_IDEA: 混合练习。
 + RendaTest: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
++ xxx: 整合开发技术，xxx商城项目
+
 
 
