@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="user/login.js"></script>
+    <script src="user/register.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <span><router-link to="/login">登录</router-link></span>
+    <span><router-link to="/register">注册</router-link></span>
+    <hr/>
+    <div>
+        <!--
+            由于html是大小写不敏感的，如果采用上面的写法，则被认为是<loginform></loginform>
+            所以，如果是驼峰形式的js组件，需要把驼峰转化为“-”的形式
+            <login-form></login-form>
+            <register-form></register-form>
+         -->
+        <!--vue-router的锚点-->
+        <router-view></router-view>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    // 创建VueRouter对象
+    const router = new VueRouter({
+        routes:[ // 编写路由规则
+            {
+                path:"/login", // 请求路径，以“/”开头
+                component:loginForm // 组件名称
+            },
+            {
+                path:"/register",
+                component:registerForm
+            }
+        ]
+    });
+
+    var vm = new Vue({
+        el: "#app",
+        components: {
+            loginForm, // 如果是驼峰形式的组件，在HTML中使用就需要把驼峰转化为“-”的形式
+            registerForm
+        },
+        router // 引用上面定义的router对象
+    });
+</script>
+</html>

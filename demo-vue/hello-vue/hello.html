@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script src="node_modules/vue/dist/vue.js" ></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="num">
+        <button v-on:click="num++">v-on:click increment</button>
+        <!--右击事件，并阻止默认事件发生-->
+        <button v-on:contextmenu.prevent="num++">右键点击增加</button>
+        <!--右击事件，不阻止默认事件发生-->
+        <button v-on:contextmenu="decrement($event)">右键点击减少同时默认事件发生</button>
+        <button v-on:click="decrement">decrement</button>
+        <h2>Hello {{name}}! Count: {{num}}</h2>
+
+        <br>
+        {{num2}}
+        <button v-on:click="add">method-Add</button>
+
+        <span v-html="hello1"></span>
+        <span v-text="hello2"></span>
+        <br>
+
+        <h1>
+            你选择了：{{language.join(',')}}
+        </h1>
+        <input type="checkbox" v-model="language" value="Java" />Java<br/>
+        <input type="checkbox" v-model="language" value="PHP" />PHP<br/>
+        <input type="checkbox" v-model="language" value="Swift" />Swift<br/>
+
+        <ul>
+            <li v-for="user in users">
+                {{user.name}} - {{user.gender}} - {{user.age}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(user, index) in users" :key=index>
+                {{index + 1}}. {{user.name}} - {{user.gender}} - {{user.age}}
+            </li>
+        </ul>
+
+        <button v-on:click="show = !show">SHOW</button>
+        <br>
+        <h1 v-if="show">
+            Show 1
+        </h1>
+        <h1 v-show="show">
+            Show 2
+        </h1>
+
+        <button v-on:click="random=Math.random()">随机数</button><span>{{random}}</span>
+        <h1 v-if="random >= 0.75">
+            IF 逻辑块
+        </h1>
+        <h1 v-else-if="random > 0.5">
+            ELSE IF 逻辑块 1
+        </h1>
+        <h1 v-else-if="random > 0.25">
+            ELSE IF 逻辑块 2
+        </h1>
+        <h1 v-else>
+            ELSE 逻辑块
+        </h1>
+
+        <!--html属性不能使用双大括号形式绑定，只能使用v-bind指令。可以是数据模型，可以是具有返回值的js代码块或者函数-->
+        <div v-bind:title="title" style="border: 1px solid red; width: 50px; height: 50px;"></div>
+
+        <!--绑定 class 样式-->
+        <div v-bind:class="activeClass"></div>
+        <div v-bind:class="errorClass"></div>
+        <div v-bind:class="[activeClass, errorClass]"></div>
+
+        <!--动态切换 class-->
+        <div class="static"
+             v-bind:class="{ active: isActive, 'text-danger': hasError }">
+        </div>
+
+        <!--绑定style样式-->
+        <div v-bind:style="[baseStyles, overridingStyles]"></div>
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+
+        <!--计算属性，替代复杂的表达式。基于依赖进行缓存-->
+        <h1>您的生日是：{{birth}} </h1>
+
+        <!--watch可以让我们监控一个值的变化。从而做出相应的反应。-->
+        <input type="text" v-model="message">
+        <br><br>
+
+        <!--使用定义好的全局组件-->
+        <counter></counter>
+
+        <!--使用子组件，同时传递title属性-->
+        <introduce title="大家好，我是张人大"/>
+    </div>
+</body>
+
+<script  type="text/javascript">
+    // 定义全局组件，两个参数：1，组件名称。2，组件参数
+    Vue.component("counter",{
+        template:'<button v-on:click="count++">你点了我 {{ count }} 次，我记住了.</button>',
+        data(){
+            return {
+                count:0
+            }
+        }
+    });
+
+    // 子组件通过props接收父组件数据，通过自定义属性的属性名title
+    Vue.component("introduce",{
+        // 直接使用props接收到的属性来渲染页面
+        template:'<h1>{{title}}</h1>',
+        props:['title'] // 通过props来接收一个父组件传递的属性
+    });
+
+    // 创建vue实例
+    var app = new Vue({
+        el:"#app", // el即element，该vue实例要渲染的页面元素
+        data:{ // 渲染页面需要的数据
+            name: "张人大",
+            num: 1,
+            num2: 1,
+            hello1: "<br><h3>v-html: 大家好</h3>",
+            hello2: "v-text: 大家好",
+            language: [],
+            users:[
+                {name:'Jack', gender:'男', age: 21},
+                {name:'Tom', gender:'男', age: 18},
+                {name:'Kimmy', gender:'女', age: 24},
+                {name:'Sam', gender:'男', age: 18},
+                {name:'Frank', gender:'男', age: 25}
+            ],
+            show: true,
+            random: 1,
+            title: "title",
+            activeClass: 'active',
+            errorClass: ['text-danger', 'text-error'],
+            isActive: true,
+            hasError: false,
+            baseStyles: {'background-color': 'red'},
+            overridingStyles: {border: '1px solid black'},
+            activeColor: 'red',
+            fontSize: 30,
+            birthday:2429032123201, // 毫秒值
+            message:""
+        },
+        methods: {
+            add:function () {
+                this.num2++;
+            },
+            decrement(ev){
+                // ev.preventDefault();
+                this.num--;
+            }
+        },
+        created: function () { // 生命周期初始化监听，钩子函数
+            this.num = 100;
+            this.num2 = 100;
+            console.log(this);
+        },
+        computed:{
+            birth(){// 计算属性本质是一个方法，但是必须返回结果
+                const d = new Date(this.birthday);
+                return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
+            }
+        },
+        watch:{
+            message(newVal, oldVal){
+                console.log(newVal, oldVal);
+            }
+        }
+    });
+</script>
+
+</html>

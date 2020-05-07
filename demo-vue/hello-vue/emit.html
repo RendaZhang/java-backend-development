@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子向父的通信</title>
+    <script src="node_modules/vue/dist/vue.js" ></script>
+</head>
+
+<body>
+<div id="app">
+    <h2>num: {{num}}</h2>
+    <!--在子组件中定义函数，函数的具体实现调用父组件的实现，并在子组件中调用这些函数。-->
+    <!--当子组件中按钮被点击时，调用绑定的函数，从而实现向父传递信息。-->
+    <!--使用子组件的时候，传递num到子组件中。通过v-on（@）指令将父组件的函数绑定到子组件上-->
+    <counter :count="num" @inc="increment" @dec="decrement"></counter>
+</div>
+</body>
+
+<script  type="text/javascript">
+    Vue.component("counter", {// 子组件，定义了两个按钮，点击数字num会加或减
+        template:'\
+            <div>\
+                <button @click="plus">加</button>  \
+                <button @click="reduce">减</button>  \
+            </div>',
+        props:['num'], // num是从父组件获取的。
+        methods:{ // 在子组件中定义函数
+            plus(){
+                this.$emit("inc"); // 函数的具体实现调用父组件的实现
+            },
+            reduce(){
+                this.$emit("dec");
+            }
+        }
+    });
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            num:0
+        },
+        methods:{ // 父组件中定义操作num的方法
+            increment(){
+                this.num++;
+            },
+            decrement(){
+                this.num--;
+            }
+        }
+    });
+</script>
+</html>
