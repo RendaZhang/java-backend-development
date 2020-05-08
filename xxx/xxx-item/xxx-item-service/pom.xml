@@ -14,6 +14,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- 工具模块 xxx-common 依赖 -->
+        <dependency>
+            <groupId>com.xxx.common</groupId>
+            <artifactId>xxx-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <!-- 兄弟模块 xxx-item-interface 依赖 -->
         <dependency>
             <groupId>com.xxx.item</groupId>
