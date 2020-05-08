@@ -12,6 +12,7 @@
         <module>xxx-gateway</module>
         <module>xxx-item</module>
         <module>xxx-common</module>
+        <module>xxx-upload</module>
     </modules>
     <packaging>pom</packaging>
 
