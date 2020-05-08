@@ -3,10 +3,11 @@
 ### 环境简述：
 - 使用了Intellij Idea作为后台开发工具，HBuilder X 作为前端开发工具
 - 使用了Maven作为项目管理工具
+- 使用了Postman进行Rest相关的测试
 - 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的笔记本电脑来搭建服务器，连接的都是同一个WIFI。
 ***
 ### 文件简介：
-
++ `demo-vue/hello-vue`: 基于nodejs的MVVM前端框架的Vuejs的相关练习
 + `hello_jdbcoracle`: Oracle数据库的连接jdbc配置测试获取数据，存储过程，函数调用。
 + `hello_jndi`: 使用jndi作为MyBatis的数据源类型
 + `hello_maven`: 测试Maven项目的功能
@@ -17,7 +18,7 @@
 + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
 + `IntelliJ_IDEA`: 混合练习。
 + `RendaTest`: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
-+ `xxx-manage-web`: 后台管理系统的前端页面。Vuetify前端脚手架，webpack加载打包前端代码
++ `xxx-manage-web`: 后台管理系统的前端。单页应用；使用Vuetify前端脚手架；webpack加载打包代码
 + `xxx`: 整合开发技术，xxx商城后端项目
 ***
 ### 补充：
@@ -25,6 +26,7 @@
     + manage.xxx.com -- 后台管理系统ip : 端口9091
     + www.xxx.com -- 门户系统ip : 端口9002
     + api.xxx.com -- 网关服务ip : 端口10010
-
+    + image.xxx.com -- 图片服务器 本地路径
+- 为避免网络阻塞网关服务忽略了upload-service服务（上传图片到图片服务器的服务）
 
 
