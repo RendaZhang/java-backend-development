@@ -13,11 +13,14 @@
 </template>
 
 <script>
+  //import {treeData} from "../../mockDB.js";
+
   export default {
     name: "category",
     data() {
       return {
-        isEdit:true
+        isEdit:true,
+        //treeData
       }
     },
     methods: {

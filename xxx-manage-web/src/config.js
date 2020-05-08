@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.xxx.com'
+const baseUrl = 'http://api.xxx.com' // xxx-gateway zuul网关域名
 const config = {
   locale: 'zh-CN', // en-US, zh-CN
   url: baseUrl,

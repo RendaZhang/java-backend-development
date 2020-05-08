@@ -72,7 +72,7 @@
           this.$http({
             method: this.isEdit ? 'put' : 'post',
             url: '/item/brand',
-            data: params
+            data: this.$qs.stringify(params) // 使用qs工具转换Json为String
           }).then(() => {
             // 关闭窗口
             this.$emit("close");

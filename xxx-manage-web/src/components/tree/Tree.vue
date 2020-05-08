@@ -49,7 +49,8 @@
     },
     methods: {
       getData() {
-        this.$http.get(this.url, {params: {pid: 0}}).then(resp => {
+        this.$http.get(this.url, {params: {pid: 0}})
+		.then(resp => {
           this.db = resp.data;
           this.db.forEach(n => n['path'] = [n.name])
         })
