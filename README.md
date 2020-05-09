@@ -4,7 +4,7 @@
 - 使用了Intellij Idea作为后台开发工具，HBuilder X 作为前端开发工具
 - 使用了Maven作为项目管理工具
 - 使用了Postman进行Rest相关的测试
-- 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的笔记本电脑来搭建服务器，连接的都是同一个WIFI。
+- 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的电脑来搭建服务器，连接的都是同一个WIFI。
 ***
 ### 文件简介：
 + `demo-vue/hello-vue`: 基于nodejs的MVVM前端框架的Vuejs的相关练习
@@ -29,5 +29,6 @@
     + image.xxx.com -- 图片服务器 本地路径
 - 为避免网络阻塞网关服务忽略了upload-service服务（上传图片到图片服务器的服务）
 - 后台使用了CorsFilter解决跨域问题，Rest请求需要用对应的域名，否则使用ip地址会返回403 - Invalid CORS request。
+- 使用FastDFS分布式文件系统来配置图片服务器，配置在Linux虚拟机中或者另外一台电脑里。
 
 
