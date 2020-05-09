@@ -145,9 +145,9 @@
               this.$message.info("删除成功！");
               // 回显
               this.getDataFromServer();
-              window.reload();
+              this.loadData();
             }).catch(() => {
-              window.reload();
+              this.$message.error("删除失败")
           });
         }).catch(() => {
           this.$message.info('已取消删除');
