@@ -6,6 +6,7 @@ import com.xxx.item.pojo.SpecGroup;
 import com.xxx.item.pojo.SpecParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class SpecificationService {
     private SpecParamMapper paramMapper;
 
     /**
-     * 根据分类id查询分组
+     * 根据分类id查询规格分组
      * @param cid
      * @return
      */
@@ -35,13 +36,67 @@ public class SpecificationService {
     }
 
     /**
-     * 根据条件查询规格参数
+     * 新增规格分组
+     * @param specGroup
+     */
+    @Transactional
+    public void saveSpecGroup(SpecGroup specGroup) {
+        this.groupMapper.insertSelective(specGroup);
+    }
+
+    /**
+     * 删除规格分组
+     * @param id
+     */
+    @Transactional
+    public void deleteSpecGroup(Long id) {
+        this.groupMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 更新规格分组
+     * @param specGroup
+     */
+    @Transactional
+    public void updateSpecGroup(SpecGroup specGroup) {
+        this.groupMapper.updateByPrimaryKeySelective(specGroup);
+    }
+
+    /**
+     * 根据GroupId查询规格参数
      * @param gid
      * @return
      */
-    public List<SpecParam> queryParams(Long gid) {
+    public List<SpecParam> queryParamsByGroupId(Long gid) {
         SpecParam param = new SpecParam();
         param.setGroupId(gid);
         return this.paramMapper.select(param);
+    }
+
+    /**
+     * 新增规格参数
+     * @param specParam
+     */
+    @Transactional
+    public void saveParam(SpecParam specParam) {
+        this.paramMapper.insertSelective(specParam);
+    }
+
+    /**
+     * 删除规格参数
+     * @param id
+     */
+    @Transactional
+    public void deleteParam(Long id) {
+        this.paramMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 更新规格参数
+     * @param specParam
+     */
+    @Transactional
+    public void updateParam(SpecParam specParam) {
+        this.paramMapper.updateByPrimaryKeySelective(specParam);
     }
 }
