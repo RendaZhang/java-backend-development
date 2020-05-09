@@ -25,6 +25,23 @@ public class SpecificationService {
     private SpecParamMapper paramMapper;
 
     /**
+     * 根据GroupId或CategoryId或者generic或者searching查询规格参数
+     * @param gid
+     * @param cid
+     * @param generic
+     * @param searching
+     * @return
+     */
+    public List<SpecParam> queryParams(Long gid, Long cid, Boolean generic, Boolean searching) {
+        SpecParam record = new SpecParam();
+        record.setGroupId(gid);
+        record.setCid(cid);
+        record.setGeneric(generic);
+        record.setSearching(searching);
+        return this.paramMapper.select(record);
+    }
+
+    /**
      * 根据分类id查询规格分组
      * @param cid
      * @return
