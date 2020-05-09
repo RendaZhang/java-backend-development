@@ -58,6 +58,18 @@ public class BrandController {
     }
 
     /**
+     * 更新品牌
+     * @param brand
+     * @param cids
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Void> updateBrand(Brand brand, @RequestParam("cids") List<Long> cids) {
+        this.brandService.updateBrand(brand, cids);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    /**
      * 删除品牌
      * @param id
      * @return
@@ -67,4 +79,6 @@ public class BrandController {
         this.brandService.deleteBrand(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+
 }
