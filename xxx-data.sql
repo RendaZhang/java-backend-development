@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 08/10/2018 09:31:57
+ Date: 05/09/2020 09:31:57
 */
 
 SET NAMES utf8mb4;
@@ -4142,7 +4142,7 @@ CREATE TABLE `tb_user` (
 -- Records of tb_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `tb_user` VALUES (28, 'zhangsan', 'e21d44f200365b57fab2641cd31226d4', '13600527634', '2018-05-25 17:52:03', '05b0f203987e49d2b72b20b95e0e57d9');
+INSERT INTO `tb_user` VALUES (28, 'RendaZhang', 'e21d44f200365b57fab2641cd31226d4', '13600527634', '2018-05-25 17:52:03', '05b0f203987e49d2b72b20b95e0e57d9');
 INSERT INTO `tb_user` VALUES (30, 'xxx', '4de9a93b3f95d468874a3c1bf3b25a48', '15855410440', '2018-09-30 11:37:30', '4565613d4b0e434cb496d4eb87feb45f');
 COMMIT;
 
