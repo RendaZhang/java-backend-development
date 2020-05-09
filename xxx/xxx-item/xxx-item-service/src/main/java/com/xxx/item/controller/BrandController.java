@@ -56,4 +56,15 @@ public class BrandController {
         this.brandService.saveBrand(brand, cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    /**
+     * 删除品牌
+     * @param id
+     * @return
+     */
+    @DeleteMapping("id/{id}")
+    public ResponseEntity<Void> deleteBrand(@PathVariable("id") Long id) {
+        this.brandService.deleteBrand(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

@@ -78,4 +78,17 @@ public class BrandService {
             this.brandMapper.insertBrandAndCategory(cid, brand.getId());
         });
     }
+
+    /**
+     * 删除品牌
+     * @param id
+     */
+    @Transactional
+    public void deleteBrand(Long id) {
+        // 先删除brand
+        this.brandMapper.deleteByPrimaryKey(id);
+
+        // 再删除中间表
+        this.brandMapper.deleteBrandAndCategoryByBrandId(id);
+    }
 }
