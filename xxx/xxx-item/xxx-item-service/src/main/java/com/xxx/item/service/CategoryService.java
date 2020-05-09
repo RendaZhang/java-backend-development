@@ -28,4 +28,13 @@ public class CategoryService {
         record.setParentId(pid);
         return this.categoryMapper.select(record);
     }
+
+    /**
+     * 根据品牌的Id查询对应的Category类目
+     * @param bid
+     * @return
+     */
+    public List<Category> queryByBrandId(Long bid) {
+        return this.categoryMapper.queryByBrandId(bid);
+    }
 }
