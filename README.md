@@ -18,7 +18,8 @@
 + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
 + `IntelliJ_IDEA`: 混合练习。
 + `RendaTest`: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
-+ `xxx-manage-web`: 后台管理系统的前端。基于vuejs的单页应用；使用Vuetify前端脚手架；webpack加载打包代码
++ `xxx-manage-web`: 后台管理系统的前端。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码
++ `xxx-portal` : 门户系统的前端。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
 + `xxx`: 整合开发技术，xxx商城后端项目
 ***
 ### 补充：
