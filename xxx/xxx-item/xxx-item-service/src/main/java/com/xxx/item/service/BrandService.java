@@ -26,6 +26,15 @@ public class BrandService {
     private BrandMapper brandMapper;
 
     /**
+     * 根据分类（Category）id通过中间表查询品牌
+     * @param cid
+     * @return
+     */
+    public List<Brand> queryBrandsByCid(Long cid) {
+        return this.brandMapper.selectBrandByCid(cid);
+    }
+
+    /**
      * 根据查询条件分页并排序查询品牌信息
      *
      * @param key

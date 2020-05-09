@@ -23,6 +23,20 @@ public class BrandController {
     private BrandService brandService;
 
     /**
+     * 根据分类（Category）id通过中间表查询品牌
+     * @param cid
+     * @return
+     */
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> queryBrandsByCid(@PathVariable("cid")Long cid){
+        List<Brand> brands = this.brandService.queryBrandsByCid(cid);
+        if (CollectionUtils.isEmpty(brands)) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(brands);
+    }
+
+    /**
      * 根据查询条件分页并排序查询品牌信息
      * @param key
      * @param page
