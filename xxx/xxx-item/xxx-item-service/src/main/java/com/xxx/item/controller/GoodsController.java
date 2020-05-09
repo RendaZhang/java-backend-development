@@ -2,13 +2,17 @@ package com.xxx.item.controller;
 
 import com.xxx.common.pojo.PageResult;
 import com.xxx.item.bo.SpuBo;
+import com.xxx.item.pojo.Sku;
+import com.xxx.item.pojo.SpuDetail;
 import com.xxx.item.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Renda Zhang
@@ -34,4 +38,33 @@ public class GoodsController {
         return ResponseEntity.ok(pageResult);
     }
 
+    @GetMapping("spu/detail/{spuId}")
+    public ResponseEntity<SpuDetail> querySpuDetailBySpuId(@PathVariable("spuId")Long spuId){
+        SpuDetail spuDetail = this.goodsService.querySpuDetailBySpuId(spuId);
+        if (spuDetail == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(spuDetail);
+    }
+
+    @GetMapping("sku/list")
+    public ResponseEntity<List<Sku>> querySkusBySpuId(@RequestParam("id")Long spuId){
+        List<Sku> skus = this.goodsService.querySkusBySpuId(spuId);
+        if (CollectionUtils.isEmpty(skus)) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(skus);
+    }
+
+    @PostMapping("goods")
+    public ResponseEntity<Void> saveGoods(@RequestBody SpuBo spuBo){
+        this.goodsService.saveGoods(spuBo);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("goods")
+    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo){
+        this.goodsService.updateGoods(spuBo);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
