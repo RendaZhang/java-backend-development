@@ -1,5 +1,6 @@
 package com.xxx.item.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xxx.common.pojo.PageResult;
@@ -28,13 +29,13 @@ public class BrandService {
      * 根据查询条件分页并排序查询品牌信息
      *
      * @param key
-     * @param page
+     * @param pageNum
      * @param rows
      * @param sortBy
      * @param desc
      * @return
      */
-    public PageResult<Brand> queryBrandsByPage(String key, Integer page, Integer rows, String sortBy, Boolean desc) {
+    public PageResult<Brand> queryBrandsByPage(String key, Integer pageNum, Integer rows, String sortBy, Boolean desc) {
 
         // 初始化example对象
         Example example = new Example(Brand.class);
@@ -46,8 +47,14 @@ public class BrandService {
         }
 
         // 添加分页条件
-        PageHelper.startPage(page, rows);
+        if (rows<0) {
+            PageHelper.startPage(pageNum, 0);
+            PageHelper.getLocalPage().setPageSizeZero(true);
+        } else {
+            PageHelper.startPage(pageNum, rows);
+        }
 
+        
         // 添加排序条件
         if (StringUtils.isNotBlank(sortBy)) {
             example.setOrderByClause(sortBy + " " + (desc ? "desc" : "asc"));
