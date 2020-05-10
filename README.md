@@ -21,9 +21,9 @@
     + `hello_springmvc`: 使用SpringMVC框架
     + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
 + `sql数据和其它数据测试`: MySQL, Oracle的sql测试语句。ElasticSearch 的测试语句。
-+ `xxx-manage-web`: 后台管理系统的前端。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码
-+ `xxx-portal`: 门户系统的前端。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
-+ `xxx`: 整合开发技术，xxx商城后端项目
++ `xxx-manage-web`: xxx商城项目的后台管理系统的前端代码。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码
++ `xxx-portal`: xxx商城的门户系统的前端代码。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
++ `xxx`: xxx商城项目的后端代码。
 ***
 ### 补充：
 - 使用了Nginx根据域名进行反向代理，对应关系：
