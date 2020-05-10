@@ -1,0 +1,292 @@
+POST _analyze
+{
+  "analyzer": "ik_max_word",
+  "text":     "我是中国人"
+}
+
+
+POST /renda/goods/
+{
+    "title":"小米手机",
+    "images":"http://image.xxx.com/12479122.jpg",
+    "price":2699.00
+}
+
+POST /renda/goods/2
+{
+    "title":"大米手机",
+    "images":"http://image.xxx.com/12479122.jpg",
+    "price":2899.00
+}
+
+POST /renda/goods/3
+{
+    "title":"超米手机",
+    "images":"http://image.xxx.com/12479122.jpg",
+    "price":2899.00,
+    "stock": 200,
+    "saleable":true
+}
+
+POST /renda/goods/4
+{
+    "title":"apple手机",
+    "images":"http://image.xxx.com/12479122.jpg",
+    "price":6899.00
+}
+
+PUT renda2
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2
+  }
+}
+
+PUT renda/_mapping/goods
+{
+    "properties": {
+    "title": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+    },
+    "images": {
+      "type": "keyword",
+      "index": "false"
+    },
+    "price": {
+      "type": "float"
+    }
+  }
+}
+
+PUT /renda/goods/3
+{
+    "title":"小米电视4A",
+    "images":"http://image.xxx.com/12479122.jpg",
+    "price":3899.00
+}
+
+PUT /renda/goods/1
+{
+  "title": "小米手机",
+  "images": "http://imag.xxx.com/12479122.jpg",
+  "price": 2699
+}
+
+DELETE /renda/goods/46Jc_XEB3DMYE9a-k1wD
+DELETE /renda/goods/3
+
+HEAD renda
+
+GET *
+GET renda
+GET /renda/_mapping
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "match_all": {}
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "match":{
+            "title":"小米电视"
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "match": {
+          "title": {
+            "query": "小米电视",
+            "operator": "and"
+          }
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "match":{
+            "title":{
+            	"query":"小米曲面电视",
+            	"minimum_should_match": "75%"
+            }
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "multi_match": {
+            "query":    "小米",
+            "fields":   [ "title", "subTitle" ]
+        }
+	}
+}
+
+GET /renda/_search
+{
+    "query":{
+        "term":{
+            "price":2699.00
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "terms":{
+            "price":[2699.00,2899.00,3899.00]
+        }
+    }
+}
+
+GET /renda/_search
+{
+  "_source": ["title","price"],
+  "query": {
+    "term": {
+      "price": 2699
+    }
+  }
+}
+
+GET /renda/_search
+{
+  "_source": {
+    "includes":["title","price"]
+  },
+  "query": {
+    "term": {
+      "price": 2699
+    }
+  }
+}
+
+GET /renda/_search
+{
+  "_source": {
+     "excludes": ["images"]
+  },
+  "query": {
+    "term": {
+      "price": 2699
+    }
+  }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "bool":{
+        	"must":     { "match": { "title": "大米" }},
+        	"must_not": { "match": { "title":  "电视" }},
+        	"should":   { "match": { "title": "手机" }}
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "range": {
+            "price": {
+                "gte":  2000.0,
+                "lt":   3800.00
+            }
+    	}
+    }
+}
+
+GET /renda/_search
+{
+  "query": {
+    "fuzzy": {
+      "title": "appla"
+    }
+  }
+}
+
+GET /renda/_search
+{
+  "query": {
+    "fuzzy": {
+        "title": {
+            "value":"appla",
+            "fuzziness":1
+        }
+    }
+  }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "bool":{
+        	"must":{ "match": { "title": "小米手机" }},
+        	"filter":{
+                "range":{"price":{"gt":2000.00,"lt":3800.00}}
+        	}
+        }
+    }
+}
+
+GET /renda/_search
+{
+    "query":{
+        "constant_score":   {
+            "filter": {
+            	 "range":{"price":{"gt":2000.00,"lt":3000.00}}
+            }
+        }
+    }
+}
+
+GET /renda/_search
+{
+  "query": {
+    "match": {
+      "title": "小米手机"
+    }
+  },
+  "sort": [
+    {
+      "price": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+GET /renda/_search
+{
+    "query":{
+        "bool":{
+        	"should":{ "match": { "title": "小米手机" }},
+        	"filter":{
+                "range":{"price":{"gt":1000,"lt":300000}}
+        	}
+        }
+    },
+    "sort": [
+      { "price": { "order": "asc" }},
+      { "_score": { "order": "desc" }}
+    ]
+}
