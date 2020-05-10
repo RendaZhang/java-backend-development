@@ -26,6 +26,15 @@ public class BrandService {
     private BrandMapper brandMapper;
 
     /**
+     * 根据id查询品牌
+     * @param id
+     * @return
+     */
+    public Brand queryBrandById(Long id) {
+        return this.brandMapper.selectByPrimaryKey(id);
+    }
+
+    /**
      * 根据分类（Category）id通过中间表查询品牌
      * @param cid
      * @return
