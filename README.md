@@ -32,7 +32,7 @@
     + api.xxx.com -- 网关服务ip : 端口10010
     + image.xxx.com -- 图片服务器 本地路径
 - 为避免网络阻塞网关服务忽略了upload-service服务（上传图片到图片服务器的服务）
-- 后台使用了CorsFilter解决跨域问题，Rest请求需要用对应的域名，否则使用ip地址会返回403 - Invalid CORS request。
+- 后台使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
 - 使用FastDFS分布式文件系统来配置图片服务器，配置在Linux虚拟机中或者另外一台电脑里。
 - 为了处理效率，做了一些数据库表的优化：
     + 数据库中避免使用Foreign Key（外键），通过在Service业务逻辑里面维护相关联的两张表；
