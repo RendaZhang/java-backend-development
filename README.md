@@ -7,19 +7,22 @@
 - 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的电脑来搭建服务器，连接的都是同一个WIFI。
 ***
 ### 文件简介：
-+ `demo-vue/hello-vue`: 基于nodejs的MVVM前端框架的Vuejs的相关练习
-+ `hello_jdbcoracle`: Oracle数据库的连接jdbc配置测试获取数据，存储过程，函数调用。
-+ `hello_jndi`: 使用jndi作为MyBatis的数据源类型
-+ `hello_maven`: 测试Maven项目的功能
-+ `hello_mybatis`: 使用MyBatis框架，MySql数据库，InnoDB存储引擎
-+ `hello_spring`: 测试Spring框架的IoC和AOP功能
-+ `hello_springboot`: 整合SpringBoot和SpringCloud微服务框架
-+ `hello_springmvc`: 使用SpringMVC框架
-+ `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
-+ `IntelliJ_IDEA`: 混合练习。
-+ `RendaTest`: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
++ `demo`：各种Demo代码练习
+    + `IntelliJ_IDEA`: 混合练习。
+    + `RendaTest`: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
+    + `demo-vue/hello-vue`: 基于nodejs的MVVM前端框架的Vuejs的相关练习
+    + `hello-spring-elasticsearch`: Spring Data ElasticSearch的使用练习
+    + `hello_jdbcoracle`: Oracle数据库的连接jdbc配置测试获取数据，存储过程，函数调用。
+    + `hello_jndi`: 使用jndi作为MyBatis的数据源类型
+    + `hello_maven`: 测试Maven项目的功能
+    + `hello_mybatis`: 使用MyBatis框架，MySql数据库，InnoDB存储引擎
+    + `hello_spring`: 测试Spring框架的IoC和AOP功能
+    + `hello_springboot`: 整合SpringBoot和SpringCloud微服务框架
+    + `hello_springmvc`: 使用SpringMVC框架
+    + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
++ `sql数据和其它数据测试`: MySQL, Oracle的sql测试语句。ElasticSearch 的测试语句。
 + `xxx-manage-web`: 后台管理系统的前端。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码
-+ `xxx-portal` : 门户系统的前端。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
++ `xxx-portal`: 门户系统的前端。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
 + `xxx`: 整合开发技术，xxx商城后端项目
 ***
 ### 补充：
