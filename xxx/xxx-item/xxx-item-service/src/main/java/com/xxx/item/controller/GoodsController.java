@@ -3,6 +3,7 @@ package com.xxx.item.controller;
 import com.xxx.common.pojo.PageResult;
 import com.xxx.item.bo.SpuBo;
 import com.xxx.item.pojo.Sku;
+import com.xxx.item.pojo.Spu;
 import com.xxx.item.pojo.SpuDetail;
 import com.xxx.item.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,15 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @GetMapping("spu/{id}")
+    public ResponseEntity<Spu> querySpuById(@PathVariable("id") Long id){
+        Spu spu = this.goodsService.querySpuById(id);
+        if(spu == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(spu);
+    }
 
     @GetMapping("spu/page")
     public ResponseEntity<PageResult<SpuBo>> querySpuBoByPage(

@@ -53,6 +53,10 @@ public class GoodsService {
     @Autowired
     private CategoryService categoryService;
 
+    public Spu querySpuById(Long id) {
+        return this.spuMapper.selectByPrimaryKey(id);
+    }
+
     public PageResult<SpuBo> querySpuBoByPage(String key, Boolean saleable, Integer pageNum, Integer rows) {
 
         Example example = new Example(Spu.class);

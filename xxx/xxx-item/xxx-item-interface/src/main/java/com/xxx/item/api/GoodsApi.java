@@ -3,6 +3,7 @@ package com.xxx.item.api;
 import com.xxx.common.pojo.PageResult;
 import com.xxx.item.bo.SpuBo;
 import com.xxx.item.pojo.Sku;
+import com.xxx.item.pojo.Spu;
 import com.xxx.item.pojo.SpuDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -18,6 +19,14 @@ import java.util.List;
  * @create 2020-05-10 23:16
  */
 public interface GoodsApi {
+
+    /**
+     * 根据spu的id查询spu
+     * @param id
+     * @return
+     */
+    @GetMapping("spu/{id}")
+    public Spu querySpuById(@PathVariable("id") Long id);
 
     /**
      * 分页查询商品
