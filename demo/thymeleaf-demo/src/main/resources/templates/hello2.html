@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello2</title>
+</head>
+
+<body>
+
+<h1>
+    欢迎您：<span th:text="${user.name}">请登录</span>
+</h1>
+<span th:text="|欢迎您:${user.name}!!!|"></span>
+
+<h2 th:object="${user}">
+    <p>FirstName: <span th:text="*{name.split(' ')[0]}">Jack</span>.</p>
+    <p>LastName: <span th:text="*{name.split(' ')[1]}">Li</span>.</p>
+
+    <p>Name: <span th:text="*{name}">Jack</span>.</p>
+    <p>Age: <span th:text="*{age}">21</span>.</p>
+    <p>friend: <span th:text="*{friend.name}">Rose</span>.</p>
+
+    <span th:text="*{age}"></span>
+    <span th:text="${user2.age}%2==0"></span>
+
+    <span th:text="*{sex} ? '男':'女'"></span>
+    <span th:text="${user2.name} ?: '二狗'"></span>
+</h2>
+
+<table border="1">
+    <tr th:each="user,stat : ${users}">
+        <td th:text="${stat.index}">0</td>
+        <td th:text="${user.name}">Onions</td>
+        <td th:text="${user.age}">2.41</td>
+    </tr>
+</table>
+
+<span th:if="${user.age} < 24">小鲜肉</span>
+<span th:unless="${user2.age} < 24">老腊肉</span>
+
+<div th:switch="${user.role}">
+    <p th:case="'admin'">用户是管理员</p>
+    <p th:case="'manager'">用户是经理</p>
+    <p th:case="*">用户是别的玩意</p>
+</div>
+
+</body>
+
+<script th:inline="javascript">
+    const user = /*[[${user}]]*/ {};
+    const age = /*[[${user.age}]]*/ 20;
+    console.log(age);
+    console.log(user);
+</script>
+
+</html>
