@@ -21,7 +21,7 @@
     + `hello_springmvc`: 使用SpringMVC框架
     + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
 + `sql数据和其它数据测试`: MySQL, Oracle的sql测试语句。ElasticSearch 的测试语句。
-+ `xxx-manage-web`: xxx商城项目的后台管理系统的前端代码。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码
++ `xxx-manage-web`: xxx商城项目的后台管理系统的前端代码。基于vuejs的单页应用；使用Vuetify前端脚手架；使用webpack加载打包代码。
 + `xxx-portal`: xxx商城的门户系统的前端代码。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；使用live-server实现开发时的热部署。
 + `xxx`: xxx商城项目的后端代码。
 ***
@@ -34,9 +34,11 @@
 - 为避免网络阻塞网关服务忽略了upload-service服务（上传图片到图片服务器的服务）
 - 后台使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
 - 使用FastDFS分布式文件系统来配置图片服务器，配置在Linux虚拟机中或者另外一台电脑里。
-- 为了处理效率，做了一些数据库表的优化：
+- 使用ElasticSearch全文搜索引擎作为搜索服务器，提高了检索响应时间，配置在Linux虚拟机或另外一台电脑里。
+- 使用mySQL作为基础的数据库。为了处理效率，使用了Hikari作为数据库连接池，另外做了一些数据库表的优化：
     + 数据库中避免使用Foreign Key（外键），通过在Service业务逻辑里面维护相关联的两张表；
     + 把一个逻辑表中数据很大的元素拆分出来成为一个独立的存储在SQL数据库的表，增加了查询效率；
     + 把一个逻辑表中‘写’频率较高的元素拆分出来成为一个独立的存储在SQL数据库的表，减少读写之间的干扰；
+    + 使用了电商中的SKU和SPU的概念作为相关表的设计
 
 
