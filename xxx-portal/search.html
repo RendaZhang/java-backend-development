@@ -276,20 +276,25 @@
             <div class="sui-navbar">
                 <div class="navbar-inner filter">
                     <ul class="sui-nav">
-                        <li class="active">
+                        <li :class="{active:!search.sortBy}" @click="search.sortBy=''">
                             <a href="#">综合</a>
                         </li>
-                        <li>
-                            <a href="#">销量</a>
-                        </li>
-                        <li>
+                        <li @click="search.sortBy='createTime'" :class="{active: search.sortBy==='createTime'}">
                             <a href="#">新品</a>
                         </li>
-                        <li>
-                            <a href="#">评价</a>
+                        <li @click="search.sortBy='price'; search.descending = !search.descending"
+                            :class="{active: search.sortBy==='price'}">
+                            <a href="#">
+                                价格
+                                <v-icon v-show="search.descending">arrow_drop_down</v-icon>
+                                <v-icon v-show="!search.descending">arrow_drop_up</v-icon>
+                            </a>
                         </li>
                         <li>
-                            <a href="#">价格</a>
+                            <a title="暂不支持排序">销量</a>
+                        </li>
+                        <li>
+                            <a title="暂不支持排序">评价</a>
                         </li>
                     </ul>
                     <div class="top-pagination">
@@ -483,6 +488,10 @@
             // 初始化page参数，如果地址栏有page参数，获取page参数，并把page转化为int类型
             search.page = parseInt(search.page) || 1;
             search.filter = ly.parse(search.filter) || {};
+            // 对排序进行初始化，默认为""，代表不排序
+            search.sortBy = search.sortBy || "";
+            // 对排序方式初始化，转为布尔值
+            search.descending = search.descending === "true" || false;
 
             // 记录在data的search对象中
             this.search = search;
