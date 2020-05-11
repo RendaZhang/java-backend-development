@@ -28,11 +28,14 @@
 ***
 ### 补充：
 - 使用了Nginx根据域名进行反向代理，对应关系：
+    + image.xxx.com -- 图片服务器
     + manage.xxx.com -- 后台管理系统ip : 端口9091
     + www.xxx.com -- 门户系统ip : 端口9002
-    + api.xxx.com -- 网关服务ip : 端口10010
-    + image.xxx.com -- 图片服务器 本地路径
-- 为避免网络阻塞网关服务忽略了upload-service服务（上传图片到图片服务器的服务）
+    + www.xxx.com/item -- 商品详情微服务 ：端口8084
+        + 把门户系统中以/item开头的请求，反向代理到商品详情微服务的8084端口。
+    + api.xxx.com -- 网关微服务ip : 端口10010
+- item-service (商品微服务) 提供了存取数据库中的数据的服务。
+- 为避免网络阻塞网关服务忽略了upload-service微服务（上传图片到图片服务器的微服务）
 - 后台使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
 - 使用FastDFS分布式文件系统来配置图片服务器，配置在Linux虚拟机中或者另外一台电脑里。
 - 使用ElasticSearch全文搜索引擎作为搜索服务器，提高了检索响应时间，配置在Linux虚拟机或另外一台电脑里。
