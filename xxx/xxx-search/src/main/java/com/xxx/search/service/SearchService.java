@@ -15,6 +15,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryRewriteContext;
+import org.elasticsearch.search.sort.SortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,12 +64,19 @@ public class SearchService {
             return null;
         }
 
+        String sortBy = request.getSortBy();
+        Boolean desc = request.getDescending();
+
         // 构建查询条件
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 对key进行全文检索查询
         queryBuilder.withQuery(QueryBuilders.matchQuery("all", request.getKey()).operator(Operator.AND));
         // 分页
         queryBuilder.withPageable(PageRequest.of(request.getPage() - 1, request.getSize()));
+        // 排序
+        if(StringUtils.isNotBlank(sortBy)) { // 如果不为空则进行排序
+            queryBuilder.withSort(SortBuilders.fieldSort(sortBy).order(desc ? SortOrder.DESC : SortOrder.ASC));
+        }
         // 通过sourceFilter设置返回的结果字段,我们只需要id、skus、subTitle
         // SourceFilter，来选择要返回的结果，否则返回一堆没用的数据，影响查询效率。
         queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{"id","skus","subTitle"}, null));
