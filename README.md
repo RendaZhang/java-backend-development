@@ -28,13 +28,43 @@
 ***
 ### 补充：
 - 使用了Nginx根据域名进行反向代理，对应关系：
-    + image.xxx.com -- 图片服务器
-    + manage.xxx.com -- 后台管理系统ip : 端口9091
-    + www.xxx.com -- 门户系统ip : 端口9002
-    + www.xxx.com/item -- 商品详情微服务 ：端口8084
-        + 把门户系统中以/item开头的商品详情请求，反向代理到商品详情微服务。
-        + 对商品详情请求进行监听，并指向本地静态页面，如果本地没找到，才进行反向代理
-    + api.xxx.com -- 网关微服务ip : 端口10010
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th>域名</th>
+            <th>服务器</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr align="left">
+            <td>image.xxx.com</td>
+            <td>图片服务器</td>
+        </tr>
+        <tr align="left">
+            <td>manage.xxx.com</td>
+            <td>后台管理系统服务器，默认端口9091</td>
+        </tr>
+        <tr align="left">
+            <td>www.xxx.com</td>
+            <td>门户系统服务器，默认端口9002</td>
+        </tr>"
+        <tr align="left">
+            <td>www.xxx.com/item</td>
+            <td>
+                商品详情微服务，默认端口8084
+                <ul>
+                    <li>把门户系统中以/item开头的商品详情请求，反向代理到商品详情微服务。</li>
+                    <li>对商品详情请求进行监听，并指向本地静态页面，如果本地没找到，才进行反向代理</li>
+                </ul>
+            </td>
+        </tr>
+        <tr align="left">
+            <td>api.xxx.com</td>
+            <td>网关微服务，默认端口10010</td>
+        </tr>
+    </tbody>
+</table>
+
 - item-service (商品微服务) 提供了存取数据库中的数据的服务。
 - 商品详情浏览量比较大，并发高，独立开启一个商品详情微服务（goods-web），用来展示商品详情
 - 商品详情微服务使用Thymeleaf实现静态化，静态的HTML页面部署在nginx中，从而大大提高并发能力，减小tomcat压力。
