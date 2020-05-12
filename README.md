@@ -21,7 +21,7 @@
     + `hello_springmvc`: 使用SpringMVC框架
     + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
     + `thymeleaf-demo`: 服务器端Java模板引擎Thymeleaf的练习使用
-+ `sql数据和其它数据测试`: MySQL, Oracle的sql测试语句。ElasticSearch 的测试语句。
++ `测试数据和配置文件`: MySQL, Oracle的sql测试语句；ElasticSearch 的测试语句；Nginx的配置文件。
 + `xxx-manage-web`: xxx商城项目的后台管理系统的前端代码。基于vuejs的单页应用；使用Vuetify前端脚手架；使用ajax框架axios进行Rest请求；使用webpack加载打包代码。
 + `xxx-portal`: xxx商城的门户系统的前端代码。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；嵌入了vuejs进行开发；使用live-server实现开发时的热部署。
 + `xxx`: xxx商城项目的后端代码。
@@ -33,9 +33,11 @@
     + www.xxx.com -- 门户系统ip : 端口9002
     + www.xxx.com/item -- 商品详情微服务 ：端口8084
         + 把门户系统中以/item开头的商品详情请求，反向代理到商品详情微服务。
+        + 对商品详情请求进行监听，并指向本地静态页面，如果本地没找到，才进行反向代理
     + api.xxx.com -- 网关微服务ip : 端口10010
 - item-service (商品微服务) 提供了存取数据库中的数据的服务。
 - 商品详情浏览量比较大，并发高，独立开启一个商品详情微服务（goods-web），用来展示商品详情
+- 商品详情微服务使用Thymeleaf实现静态化，静态的HTML页面部署在nginx中，从而大大提高并发能力，减小tomcat压力。
 - 为避免网络阻塞网关服务忽略了upload-service微服务（上传图片到图片服务器的微服务）
 - 后台使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
 - 使用FastDFS分布式文件系统来配置图片服务器，配置在Linux虚拟机中或者另外一台电脑里。
