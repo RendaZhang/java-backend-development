@@ -56,8 +56,8 @@ public class GoodsService {
         // 查询规格参数组
         List<SpecGroup> groups = this.specificationClient.queryGroupsWithParamsByCid(spu.getCid3());
 
-        // 查询特殊的规格参数 (非generic的即是特殊的)
-        List<SpecParam> params = this.specificationClient.queryParams(null, spu.getCid3(), false, null);
+        // 查询规格参数 (generic = false的即是特殊的, generic = null是包含特殊和通用的)
+        List<SpecParam> params = this.specificationClient.queryParams(null, spu.getCid3(), null, null);
         Map<Long, String> paramMap = new HashMap<>();
         params.forEach(param -> {
             paramMap.put(param.getId(), param.getName());
