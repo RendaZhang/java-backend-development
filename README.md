@@ -76,8 +76,8 @@
 - 网关微服务 (xxx-gateway) 使用Zuul网关或者GateWay网关。
     + 使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
     + 搜索微服务和商品微服务都经过网关，但是忽略了图片上传微服务，避免了高并发时的网络堵塞。
-        + 搜索微服务 -- api.xxx.com/search
-        + 商品微服务 -- api.xxx.com/item
+        + 搜索微服务 -- api.xxx.com/search 默认端口8083
+        + 商品微服务 -- api.xxx.com/item 默认端口8081
 - 图片服务器使用了FastDFS分布式文件系统，配置在Linux虚拟机中或者另外一台电脑里。
 - 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务
     + 因为绕过了网关，重新配置CorsFilter
