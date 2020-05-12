@@ -5,6 +5,8 @@
 - 使用了Maven作为项目管理工具
 - 使用了Postman进行Rest相关的测试
 - 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的电脑来搭建服务器，连接的都是同一个WIFI。
+    - 使用FileZilla作为FTP软件传输开发部署相关的文件。
+    - 使用secureCRT在Windows下登录UNIX或Linux服务器主机
 ***
 ### 文件简介：
 + `demo`：各种Demo代码练习
