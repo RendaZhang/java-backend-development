@@ -1,27 +1,27 @@
 POST _analyze
 {
   "analyzer": "ik_max_word",
-  "text":     "ÎÒÊÇÖĞ¹úÈË"
+  "text":     "æˆ‘æ˜¯ä¸­å›½äºº"
 }
 
 
 POST /renda/goods/
 {
-    "title":"Ğ¡Ã×ÊÖ»ú",
+    "title":"å°ç±³æ‰‹æœº",
     "images":"http://image.xxx.com/12479122.jpg",
     "price":2699.00
 }
 
 POST /renda/goods/2
 {
-    "title":"´óÃ×ÊÖ»ú",
+    "title":"å¤§ç±³æ‰‹æœº",
     "images":"http://image.xxx.com/12479122.jpg",
     "price":2899.00
 }
 
 POST /renda/goods/3
 {
-    "title":"³¬Ã×ÊÖ»ú",
+    "title":"è¶…ç±³æ‰‹æœº",
     "images":"http://image.xxx.com/12479122.jpg",
     "price":2899.00,
     "stock": 200,
@@ -30,7 +30,7 @@ POST /renda/goods/3
 
 POST /renda/goods/4
 {
-    "title":"appleÊÖ»ú",
+    "title":"appleæ‰‹æœº",
     "images":"http://image.xxx.com/12479122.jpg",
     "price":6899.00
 }
@@ -62,14 +62,14 @@ PUT renda/_mapping/goods
 
 PUT /renda/goods/3
 {
-    "title":"Ğ¡Ã×µçÊÓ4A",
+    "title":"å°ç±³ç”µè§†4A",
     "images":"http://image.xxx.com/12479122.jpg",
     "price":3899.00
 }
 
 PUT /renda/goods/1
 {
-  "title": "Ğ¡Ã×ÊÖ»ú",
+  "title": "å°ç±³æ‰‹æœº",
   "images": "http://imag.xxx.com/12479122.jpg",
   "price": 2699
 }
@@ -101,7 +101,7 @@ GET /renda/_search
 {
     "query":{
         "match":{
-            "title":"Ğ¡Ã×µçÊÓ"
+            "title":"å°ç±³ç”µè§†"
         }
     }
 }
@@ -111,7 +111,7 @@ GET /renda/_search
     "query":{
         "match": {
           "title": {
-            "query": "Ğ¡Ã×µçÊÓ",
+            "query": "å°ç±³ç”µè§†",
             "operator": "and"
           }
         }
@@ -123,7 +123,7 @@ GET /renda/_search
     "query":{
         "match":{
             "title":{
-            	"query":"Ğ¡Ã×ÇúÃæµçÊÓ",
+            	"query":"å°ç±³æ›²é¢ç”µè§†",
             	"minimum_should_match": "75%"
             }
         }
@@ -134,7 +134,7 @@ GET /renda/_search
 {
     "query":{
         "multi_match": {
-            "query":    "Ğ¡Ã×",
+            "query":    "å°ç±³",
             "fields":   [ "title", "subTitle" ]
         }
 	}
@@ -196,9 +196,9 @@ GET /renda/_search
 {
     "query":{
         "bool":{
-        	"must":     { "match": { "title": "´óÃ×" }},
-        	"must_not": { "match": { "title":  "µçÊÓ" }},
-        	"should":   { "match": { "title": "ÊÖ»ú" }}
+        	"must":     { "match": { "title": "å¤§ç±³" }},
+        	"must_not": { "match": { "title":  "ç”µè§†" }},
+        	"should":   { "match": { "title": "æ‰‹æœº" }}
         }
     }
 }
@@ -240,7 +240,7 @@ GET /renda/_search
 {
     "query":{
         "bool":{
-        	"must":{ "match": { "title": "Ğ¡Ã×ÊÖ»ú" }},
+        	"must":{ "match": { "title": "å°ç±³æ‰‹æœº" }},
         	"filter":{
                 "range":{"price":{"gt":2000.00,"lt":3800.00}}
         	}
@@ -263,7 +263,7 @@ GET /renda/_search
 {
   "query": {
     "match": {
-      "title": "Ğ¡Ã×ÊÖ»ú"
+      "title": "å°ç±³æ‰‹æœº"
     }
   },
   "sort": [
@@ -279,7 +279,7 @@ GET /renda/_search
 {
     "query":{
         "bool":{
-        	"should":{ "match": { "title": "Ğ¡Ã×ÊÖ»ú" }},
+        	"should":{ "match": { "title": "å°ç±³æ‰‹æœº" }},
         	"filter":{
                 "range":{"price":{"gt":1000,"lt":300000}}
         	}

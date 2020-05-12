@@ -9,8 +9,8 @@ select * from (
        ) e where rownum < 11
 ) where rn > 5;
 
----outÀàĞÍ²ÎÊıÈçºÎÊ¹ÓÃ
----Ê¹ÓÃ´æ´¢¹ı³ÌÀ´ËãÄêĞ½
+---outç±»å‹å‚æ•°å¦‚ä½•ä½¿ç”¨
+---ä½¿ç”¨å­˜å‚¨è¿‡ç¨‹æ¥ç®—å¹´è–ª
 create or replace procedure p_yearsal(eno emp.empno%type, yearsal out number)
 is
    s number(10);
@@ -20,7 +20,7 @@ begin
    yearsal := s+c;
 end;
 
----²âÊÔp_yearsal
+---æµ‹è¯•p_yearsal
 declare
   yearsal number(10);
 begin
@@ -28,9 +28,9 @@ begin
   dbms_output.put_line(yearsal);
 end;
 
-----Í¨¹ı´æ´¢º¯ÊıÊµÏÖ¼ÆËãÖ¸¶¨Ô±¹¤µÄÄêĞ½
-----´æ´¢¹ı³ÌºÍ´æ´¢º¯ÊıµÄ²ÎÊı¶¼²»ÄÜ´ø³¤¶È
-----´æ´¢º¯ÊıµÄ·µ»ØÖµÀàĞÍ²»ÄÜ´ø³¤¶È
+----é€šè¿‡å­˜å‚¨å‡½æ•°å®ç°è®¡ç®—æŒ‡å®šå‘˜å·¥çš„å¹´è–ª
+----å­˜å‚¨è¿‡ç¨‹å’Œå­˜å‚¨å‡½æ•°çš„å‚æ•°éƒ½ä¸èƒ½å¸¦é•¿åº¦
+----å­˜å‚¨å‡½æ•°çš„è¿”å›å€¼ç±»å‹ä¸èƒ½å¸¦é•¿åº¦
 create or replace function f_yearsal(eno emp.empno%type) return number
 is
   s number(10);     
@@ -39,8 +39,8 @@ begin
   return s;
 end;
 
-----²âÊÔf_yearsal
-----´æ´¢º¯ÊıÔÚµ÷ÓÃµÄÊ±ºò£¬·µ»ØÖµĞèÒª½ÓÊÕ¡£
+----æµ‹è¯•f_yearsal
+----å­˜å‚¨å‡½æ•°åœ¨è°ƒç”¨çš„æ—¶å€™ï¼Œè¿”å›å€¼éœ€è¦æ¥æ”¶ã€‚
 declare
   s number(10); 
 begin
