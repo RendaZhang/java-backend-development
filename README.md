@@ -30,7 +30,7 @@
 ***
 ### 补充：
 - 使用了Nginx根据域名进行反向代理，对应关系：
-<table cellspacing="0">
+<table border="1">
     <thead>
         <tr>
             <th>域名</th>
@@ -62,14 +62,14 @@
             <td>api.xxx.com/api/upload</td>
             <td>图片上传微服务，默认端口8082</td>
         </tr>
-        <tr>
+        <tfoot>
             <td colspan="2">
                 <ol>
                     <li>使用Nginx对门户系统的商品详情请求进行监听，并指向本地Nginx的静态页面。如果本地没找到请求的页面, 把以/item开头的商品详情请求，反向代理到静态页微服务。</li>
                     <li>在Nginx把经过网关微服务的以/api/upload开头的请求，转到图片上传微服务的真实地址。</li>
                 </ol>
             </td>
-        </tr>
+        </tfoot>
     </tbody>
 </table>
 
