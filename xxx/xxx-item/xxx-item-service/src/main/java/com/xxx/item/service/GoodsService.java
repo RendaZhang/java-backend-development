@@ -10,6 +10,9 @@ import com.xxx.item.pojo.Spu;
 import com.xxx.item.pojo.SpuDetail;
 import com.xxx.item.pojo.Stock;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,29 +32,35 @@ import java.util.stream.Collectors;
  */
 @Service
 public class GoodsService {
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SpuMapper spuMapper;
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private BrandMapper brandMapper;
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SpuDetailMapper spuDetailMapper;
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private SkuMapper skuMapper;
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private StockMapper stockMapper;
-
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(GoodsService.class);
+
+    private void sendMessage(String type, Long id){
+        // 发送消息
+        try {
+            this.amqpTemplate.convertAndSend("item." + type, id);
+        } catch (Exception e) {
+            LOGGER.error("{}商品消息发送异常，商品id：{}", type, id, e);
+        }
+    }
 
     public Spu querySpuById(Long id) {
         return this.spuMapper.selectByPrimaryKey(id);
@@ -146,8 +155,15 @@ public class GoodsService {
         this.spuDetailMapper.insertSelective(spuDetail);
 
         saveSkuAndStock(spuBo);
+
+        // 通过 Spring AMPQ 发送 routingKey 和商品id 给消费者
+        sendMessage("insert", spuBo.getId());
     }
 
+    /**
+     * 更新商品
+     * @param spu
+     */
     @Transactional
     public void updateGoods(SpuBo spu) {
         // 查询以前sku
@@ -177,6 +193,9 @@ public class GoodsService {
 
         // 更新spu详情
         this.spuDetailMapper.updateByPrimaryKeySelective(spu.getSpuDetail());
+
+        // 通过 Spring AMPQ 发送 routingKey 和 商品id 给消费者
+        sendMessage("update", spu.getId());
     }
 
     /**

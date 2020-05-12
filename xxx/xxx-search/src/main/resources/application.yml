@@ -9,6 +9,11 @@ spring:
       cluster-nodes: 127.0.0.1:9300
   jackson:
     default-property-inclusion: non_null # 配置json处理时忽略空值
+  rabbitmq: # 只是接收消息而不发送，所以不用配置template相关内容。
+    host: 127.0.0.1
+    username: /xxx
+    password: xxx
+    virtual-host: /xxx
 eureka:
   client:
     service-url:

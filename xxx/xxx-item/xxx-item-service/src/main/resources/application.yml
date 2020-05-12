@@ -10,6 +10,14 @@ spring:
     hikari:
       max-lifetime: 28830000 # 一个连接的生命时长ms，超时而且没被使用则被释放，默认:30分钟，建议设置比数据库超时时长少30秒
       maximum-pool-size: 9 # 连接池中允许的最大连接数。默认值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+  rabbitmq:
+    host: 127.0.0.1
+    username: /xxx
+    password: xxx
+    virtual-host: /xxx
+    template: # 有关AmqpTemplate的配置
+      exchange: xxx.item.exchange # 默认的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+    publisher-confirms: true # 生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
 eureka:
   client:
     service-url:

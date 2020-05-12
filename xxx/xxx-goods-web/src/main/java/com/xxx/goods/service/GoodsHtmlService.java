@@ -28,6 +28,15 @@ public class GoodsHtmlService {
     private static final Logger LOGGER = LoggerFactory.getLogger(GoodsHtmlService.class);
 
     /**
+     * 删除html页面
+     * @param id
+     */
+    public void deleteHtml(Long id) {
+        File file = new File("C:\\project\\nginx-1.14.0\\html\\item\\", id + ".html");
+        file.deleteOnExit();
+    }
+
+    /**
      * 创建html页面，实现页面静态化
      *
      * @param spuId

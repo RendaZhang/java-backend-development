@@ -58,6 +58,28 @@ public class SearchService {
     @Autowired
     private GoodsRepository goodsRepository;
 
+    /**
+     * 根据 spu id 创建对应的商品索引
+     * @param id
+     * @throws IOException
+     */
+    public void createIndex(Long id) throws IOException {
+        Spu spu = this.goodsClient.querySpuById(id);
+        // 构建商品
+        Goods goods = this.buildGoods(spu);
+
+        // 保存数据到索引库
+        this.goodsRepository.save(goods);
+    }
+
+    /**
+     * 根据 spu id 删除对应的商品索引
+     * @param id
+     */
+    public void deleteIndex(Long id) {
+        this.goodsRepository.deleteById(id);
+    }
+
     public PageResult<Goods> search(SearchRequest request) {
         // 判断是否有搜索条件，如果没有，直接返回null。不允许搜索全部商品
         if (StringUtils.isBlank(request.getKey())) {
