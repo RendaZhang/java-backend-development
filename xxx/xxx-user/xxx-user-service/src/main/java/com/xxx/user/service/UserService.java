@@ -38,6 +38,25 @@ public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
+    public User queryUser(String username, String password) {
+        // 查询
+        User record = new User();
+        record.setUsername(username);
+        User user = this.userMapper.selectOne(record);
+        // 校验用户名
+        if (user == null) {
+            return null;
+        }
+        // 校验密码
+        if (!user.getPassword().equals(CodecUtils.md5Hex(password, user.getSalt()))) {
+            return null;
+        }
+
+        logger.info(user.getUsername()+ " login succeed.");
+        // 用户名密码都正确
+        return user;
+    }
+
     public Boolean sendVerifyCode(String phone) {
         // 生成验证码
         String code = NumberUtils.generateCode(6);

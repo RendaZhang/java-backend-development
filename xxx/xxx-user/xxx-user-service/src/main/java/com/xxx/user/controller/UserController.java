@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +19,24 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * 根据用户名和密码查询用户
+     * @param username
+     * @param password
+     * @return
+     */
+    @PostMapping("login")
+    public ResponseEntity<User> queryUser(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password
+    ) {
+        User user = this.userService.queryUser(username, password);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(user);
+    }
 
     /**
      * 注册
@@ -43,7 +58,7 @@ public class UserController {
      * @param phone
      * @return
      */
-    @PostMapping("code")
+    @PostMapping("send")
     public ResponseEntity<Void> sendVerifyCode(String phone) {
         Boolean bool = this.userService.sendVerifyCode(phone);
         if (bool == null || !bool) {
