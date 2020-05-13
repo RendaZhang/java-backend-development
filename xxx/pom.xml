@@ -15,6 +15,7 @@
         <module>xxx-upload</module>
         <module>xxx-search</module>
         <module>xxx-goods-web</module>
+        <module>xxx-user</module>
     </modules>
     <packaging>pom</packaging>
 

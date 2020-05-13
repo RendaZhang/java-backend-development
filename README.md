@@ -1,35 +1,36 @@
 ## Java后台开发：Java框架，JavaWeb以及数据库相关的代码。*持续更新中...*
 ***
 ### 环境简述：
-- 使用了Intellij Idea作为后台开发工具，HBuilder X 作为前端开发工具
-- 使用了Maven作为项目管理工具
-- 使用了Postman进行Rest相关的测试
-- 模拟服务器搭建在跟开发同一个电脑使用localhost连接，或者使用虚拟机（LinuxCentOS6）搭建服务器，或者使用另外一台双系统（LinuxUbuntu18+Windows10）的电脑来搭建服务器，连接的都是同一个WIFI。
-    - 使用FileZilla作为FTP软件传输开发部署相关的文件。
-    - 使用secureCRT在Windows下登录UNIX或Linux服务器主机
+- 使用了 Intellij Idea 作为后台开发工具，HBuilder X 作为前端开发工具
+- 使用了 Maven 作为项目管理工具
+- 使用了 Postman 进行 Rest 相关的测试
+- 模拟服务器搭建在跟开发同一个电脑使用 localhost 连接，或者使用虚拟机 (Linux CentOS6) 搭建服务器，或者使用另外一台双系统 (Linux Ubuntu18 + Windows10) 的电脑来搭建服务器，连接的都是同一个 WIFI。
+    - 使用 FileZilla 作为 FTP 软件传输开发部署相关的文件。
+    - 使用 secureCRT 在 Windows 下登录 UNIX 或 Linux 服务器主机
 ***
 ### 文件简介：
-+ `demo`：各种Demo代码练习
-    + `IntelliJ_IDEA`: 混合练习。
-    + `RendaTest`: Idea的模块化, Tomcat的三大组件（Filter,listener,servlet）, Redis内存数据库，数据库连接池C3P0和Druid测试
-    + `demo-vue/hello-vue`: 基于nodejs的MVVM前端框架的Vuejs的相关练习
-    + `hello-spring-elasticsearch`: Spring Data ElasticSearch的使用练习
-    + `hello_jdbcoracle`: Oracle数据库的连接jdbc配置测试获取数据，存储过程，函数调用。
-    + `hello_jndi`: 使用jndi作为MyBatis的数据源类型
-    + `hello_maven`: 测试Maven项目的功能
-    + `hello_mybatis`: 使用MyBatis框架，MySql数据库，InnoDB存储引擎
-    + `hello_spring`: 测试Spring框架的IoC和AOP功能
-    + `hello_springboot`: 整合SpringBoot和SpringCloud微服务框架
-    + `hello_springmvc`: 使用SpringMVC框架
-    + `hello_ssm`: 整合Spring, SpringMCV, MyBatis三大框架
-    + `thymeleaf-demo`: 服务器端Java模板引擎Thymeleaf的练习使用
-+ `测试数据和配置文件`: MySQL, Oracle的sql测试语句；ElasticSearch 的测试语句；Nginx的配置文件。
-+ `xxx-manage-web`: xxx商城项目的后台管理系统的前端代码。基于vuejs的单页应用；使用Vuetify前端脚手架；使用ajax框架axios进行Rest请求；使用webpack加载打包代码。
-+ `xxx-portal`: xxx商城的门户系统的前端代码。基于原生态Web(HTML+CSS+JS+JQuery)的多页应用；嵌入了vuejs进行开发；使用live-server实现开发时的热部署。
-+ `xxx`: xxx商城项目的后端代码。
++ `demo`：各种 Demo 代码练习
+    + `IntelliJ_IDEA`: 混合练习
+    + `RendaTest`: Idea 的模块化, Tomcat 的三大组件 (Filter, listener, servlet), Redis内存数据库，数据库连接池 C3P0 和 Druid 测试
+    + `demo-vue/hello-vue`: 基于 nodejs 的 MVVM 前端框架的 Vuejs 的相关练习
+    + `hello-spring-elasticsearch`: Spring Data ElasticSearch 的使用练习
+    + `hello_jdbcoracle`: Oracle 数据库的连接 jdbc 配置测试获取数据，存储过程，函数调用
+    + `hello_jndi`: 使用 jndi 作为 MyBatis 的数据源类型
+    + `hello_maven`: 测试 Maven 项目的功能
+    + `hello_mybatis`: 使用 MyBatis 框架，MySql 数据库，InnoDB 存储引擎
+    + `hello_spring`: 测试 Spring 框架的 IoC 和 AOP 功能
+    + `hello_springboot`: 整合 SpringBoot 和 SpringCloud 微服务框架
+    + `hello_springmvc`: 使用 SpringMVC 框架
+    + `hello_ssm`: 整合 Spring, SpringMCV, MyBatis 三大框架
+    + `thymeleaf-demo`: 服务器端 Java 模板引擎 Thymeleaf 的练习使用
++ `测试数据和配置文件`: MySQL, Oracle 的 sql 测试语句；ElasticSearch 的测试语句；Nginx 的配置文件
++ `xxx-manage-web`: xxx 商城项目的后台管理系统的前端代码。基于 vuejs 的单页应用；使用 Vuetify 前端脚手架；使用 ajax 框架 axios 进行 Rest 请求；使用 webpack 加载打包代码
++ `xxx-portal`: xxx 商城的门户系统的前端代码。基于原生态 Web (HTML+CSS+JS+JQuery) 的多页应用；嵌入了 vuejs 进行开发；使用 live-server 实现开发时的热部署
++ `xxx`: xxx 商城项目的后端代码
 ***
 ### 补充：
-- 使用了Nginx根据域名进行反向代理，对应关系：
+- 消息管理系统使用 RabbitMQ 为底层的 Spring AMQP 框架，实现搜索微服务、商品静态页微服务的数据同步。
+- 使用了 Nginx 根据域名进行反向代理，对应关系：
 <table border="1">
     <thead>
         <tr>
@@ -56,7 +57,7 @@
         </tr>
         <tr align="left">
             <td>api.xxx.com</td>
-            <td>网关微服务，默认端口10010</td>
+            <td>网关，默认端口10010</td>
         </tr>
         <tr align="left">
             <td>api.xxx.com/api/upload</td>
@@ -65,33 +66,41 @@
         <tfoot>
             <td colspan="2">
                 <ol>
-                    <li>使用Nginx对门户系统的商品详情请求进行监听，并指向本地Nginx的静态页面。如果本地没找到请求的页面, 把以/item开头的商品详情请求，反向代理到静态页微服务。</li>
-                    <li>在Nginx把经过网关微服务的以/api/upload开头的请求，转到图片上传微服务的真实地址。</li>
+                    <li>使用 Nginx 对门户系统的商品详情请求进行监听，并指向本地 Nginx 的静态页面。如果本地没找到请求的页面, 把以 /item 开头的商品详情请求，反向代理到静态页微服务。</li>
+                    <li>在 Nginx 把经过网关微服务的以 /api/upload 开头的请求，转到图片上传微服务的真实地址。</li>
                 </ol>
             </td>
         </tfoot>
     </tbody>
 </table>
 
-- 网关微服务 (xxx-gateway) 使用Zuul网关或者GateWay网关。
-    + 使用了CorsFilter解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request。
-    + 搜索微服务和商品微服务都经过网关，但是忽略了图片上传微服务，避免了高并发时的网络堵塞。
+- 微服务注册中心 (xxx-registry) 使用 SpringCloud Eureka，默认端口10086。
+    + 可以开启集群以增强可用性
+    + 取消把注册中心自己注册到 Eureka 服务列表
+    + 开发阶段关闭自我保护
+- 网关 (xxx-gateway) 使用 Spring Cloud Zuul 网关或者 Spring Cloud GateWay 网关。
+    + 使用了 CorsFilter 解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request
+    + 以下微服务都经过网关：
         + 搜索微服务 -- api.xxx.com/search 默认端口8083
         + 商品微服务 -- api.xxx.com/item 默认端口8081
-- 图片服务器使用了FastDFS分布式文件系统，配置在Linux虚拟机中或者另外一台电脑里。
-- 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务
-    + 因为绕过了网关，重新配置CorsFilter
-- 搜索微服务 (search-service) 使用了ElasticSearch全文搜索引擎作为搜索服务器，提高了检索响应时间，配置在Linux虚拟机或另外一台电脑里。
-- 静态页微服务 (goods-web) 使用Thymeleaf实现静态化。
-    + 静态的HTML页面部署在本地Nginx中，从而大大提高并发能力，减小tomcat压力。
-    + 静态页微服务可以用来展示浏览量比较大而且并发高的商品详情页面。
-- 消息管理系统使用基于AMQP的RabbitMQ为底层的Spring AMQP框架，实现搜索服务、商品静态页的数据同步
-- 商品微服务 (item-service) 使用mySQL作为基础的数据库，提供了存取数据库中的数据的服务。为了处理效率，使用了Hikari作为数据库连接池
-    + 当商品微服务对商品进行写操作，需要发送商品id到RabbitMQ，通知其它微服务。
+        + 用户微服务 -- api.xxx.com/user 默认端口8085
+    + 网关忽略了图片上传微服务，避免了高并发时的网络堵塞
+- 图片服务器使用了 FastDFS 分布式文件系统，配置在 Linux 虚拟机中或者另外一台电脑里。
+- 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务。
+    + 绕过了网关，重新配置了 CorsFilter
+- 搜索微服务 (search-service) 使用了 ElasticSearch 全文搜索引擎作为搜索服务器，提高了检索响应时间，配置在 Linux 虚拟机或另外一台电脑里。
+- 静态页微服务 (goods-web) 使用 Thymeleaf 实现静态化。
+    + 静态的HTML页面部署在本地Nginx中，从而大大提高并发能力，减小tomcat压力
+    + 静态页微服务可以用来展示浏览量比较大而且并发高的商品详情页面
+- 商品微服务 (item-service) 使用mySQL作为基础的数据库，提供了存取数据库中的商品相关数据的服务。
+    + 当商品微服务对商品进行写操作，需要发送商品id 到 RabbitMQ，通知其它相关的微服务
+    + 使用了 Hikari 作为数据库连接池，提高了在并发较高时候的响应能力
     + 另外做了一些数据库表的优化：
-        + 数据库中避免使用Foreign Key（外键），通过在Service业务逻辑里面维护相关联的两张表；
-        + 把一个逻辑表中数据很大的元素拆分出来成为一个独立的存储在SQL数据库的表，增加了查询效率；
-        + 把一个逻辑表中‘写’频率较高的元素拆分出来成为一个独立的存储在SQL数据库的表，减少读写之间的干扰；
-        + 使用了电商中的SKU和SPU的概念作为相关表的设计。
+        + 数据库中避免使用 Foreign Key（外键），通过在Service业务逻辑里面维护相关联的两张表
+        + 把一个逻辑表中数据很大的元素拆分出来成为一个独立的存储在SQL数据库的表，增加了查询效率
+        + 把一个逻辑表中‘写’频率较高的元素拆分出来成为一个独立的存储在SQL数据库的表，减少读写之间的干扰
+        + 使用了电商中的SKU和SPU的概念作为相关表的设计
+- 用户微服务 (user-service) 为用户中心，实现基本的登录和注册以及其他与用户有关的功能
+    + 使用面向接口的开发方式
 
 
