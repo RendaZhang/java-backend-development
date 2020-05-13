@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 /**
  * @author Renda Zhang
  * @create 2020-05-13 14:17
@@ -28,7 +30,7 @@ public class UserController {
      * @return
      */
     @PostMapping("register")
-    public ResponseEntity<Void> register(User user, @RequestParam("code") String code) {
+    public ResponseEntity<Void> register(@Valid User user, @RequestParam("code") String code) {
         Boolean bool = this.userService.register(user, code);
         if (bool == null || !bool) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

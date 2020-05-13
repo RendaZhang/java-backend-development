@@ -14,6 +14,11 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--引入 Hibernate Validator 实现服务端的数据校验-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
         <!--添加jpa的依赖-->
         <dependency>
             <groupId>javax.persistence</groupId>
