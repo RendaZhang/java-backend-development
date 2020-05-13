@@ -13,6 +13,7 @@
     + `IntelliJ_IDEA`: 混合练习
     + `RendaTest`: Idea 的模块化, Tomcat 的三大组件 (Filter, listener, servlet), Redis内存数据库，数据库连接池 C3P0 和 Druid 测试
     + `demo-vue/hello-vue`: 基于 nodejs 的 MVVM 前端框架的 Vuejs 的相关练习
+    + `dysms-demo`: 阿里云短信服务发送短信 Demo 代码。
     + `hello-spring-elasticsearch`: Spring Data ElasticSearch 的使用练习
     + `hello_jdbcoracle`: Oracle 数据库的连接 jdbc 配置测试获取数据，存储过程，函数调用
     + `hello_jndi`: 使用 jndi 作为 MyBatis 的数据源类型
@@ -83,6 +84,7 @@
     + 开发阶段关闭自我保护
 - 网关 (xxx-gateway) 使用 Spring Cloud Zuul 网关或者 Spring Cloud GateWay 网关。
     + 使用了 CorsFilter 解决跨域问题，Rest 请求需要配置对应的域名，否则使会返回 403 - Invalid CORS request
+    + 短信发送经过MQ，消耗时间长容易超过默认1秒的熔断时间。设置hystrix的超时时间为两秒。
     + 以下微服务都经过网关：
         + 搜索微服务 -- api.xxx.com/search 默认端口 8083
         + 商品微服务 -- api.xxx.com/item 默认端口 8081

@@ -14,11 +14,27 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--引入工具模块的依赖-->
+        <dependency>
+            <groupId>com.xxx.common</groupId>
+            <artifactId>xxx-common</artifactId>
+            <version>${xxx.latest.version}</version>
+        </dependency>
         <!--兄弟模块的依赖-->
         <dependency>
             <groupId>com.xxx.user</groupId>
             <artifactId>xxx-user-interface</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!--引入Redis启动器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--Spring AMQP, RabbitMQ的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <!-- web启动器 -->
         <dependency>

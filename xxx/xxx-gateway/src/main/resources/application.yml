@@ -16,3 +16,10 @@ zuul:
     user-service: /user/** # 用户微服务的映射路径
   ignored-services:
     - upload-service # 忽略upload-service服务，避免网络阻塞
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 # 设置hystrix的超时时间为2000ms

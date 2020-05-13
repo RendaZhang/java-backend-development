@@ -8,6 +8,13 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  redis: # 配置 redis 来缓存服务器端的验证码
+    host: 127.0.0.1
+  rabbitmq:
+    host: 127.0.0.1
+    username: /xxx
+    password: xxx
+    virtual-host: /xxx
 eureka:
   client:
     service-url:
