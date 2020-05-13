@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(classes = XxxUserApplication.class)
 public class RedisTest {
 
+    private static final String KEY_PREFIX = "user:code:phone:";
+
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -30,9 +32,10 @@ public class RedisTest {
 
     @Test
     public void testRedis2() {
-        // 存储数据，并指定剩余生命时间,5小时
-        this.redisTemplate.opsForValue().set("key2", "value2",
-                5, TimeUnit.SECONDS);
+        // 存储数据，并指定剩余生命时间,5秒
+        this.redisTemplate.opsForValue().set("key2", "value2", 5, TimeUnit.SECONDS);
+
+        // this.redisTemplate.opsForValue().set(KEY_PREFIX + "13925067232", "12345", 5, TimeUnit.MINUTES);
     }
 
     @Test

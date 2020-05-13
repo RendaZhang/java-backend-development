@@ -1,8 +1,10 @@
 package com.xxx.user.service;
 
+import com.xxx.common.utils.CodecUtils;
 import com.xxx.common.utils.NumberUtils;
 import com.xxx.user.mapper.UserMapper;
 import com.xxx.user.pojo.User;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -66,5 +69,27 @@ public class UserService {
                 return null;
         }
         return this.userMapper.selectCount(record) == 0; // 查看数量是否为0，如果为0则可用
+    }
+
+    public Boolean register(User user, String code) {
+        // 校验短信验证码
+        String cacheCode = this.redisTemplate.opsForValue().get(KEY_PREFIX + user.getPhone());
+        if (!StringUtils.equals(code, cacheCode)) {
+            return false;
+        }
+
+        // 初始化用户信息
+        String salt = CodecUtils.generateSalt(); // 生成盐
+        user.setSalt(salt);
+        user.setPassword(CodecUtils.md5Hex(user.getPassword(), salt)); // 对密码加密
+        user.setId(null); // 强制设置不能指定的参数为null
+        user.setCreated(new Date());
+
+        // 添加到数据库
+        boolean b = this.userMapper.insertSelective(user) == 1;
+        if(b){
+            this.redisTemplate.delete(KEY_PREFIX + user.getPhone()); // 注册成功，删除redis中的记录
+        }
+        return b;
     }
 }

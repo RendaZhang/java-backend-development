@@ -1,5 +1,6 @@
 package com.xxx.user.controller;
 
+import com.xxx.user.pojo.User;
 import com.xxx.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Renda Zhang
@@ -18,6 +20,21 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * 注册
+     * @param user
+     * @param code
+     * @return
+     */
+    @PostMapping("register")
+    public ResponseEntity<Void> register(User user, @RequestParam("code") String code) {
+        Boolean bool = this.userService.register(user, code);
+        if (bool == null || !bool) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     /**
      * 发送手机验证码
