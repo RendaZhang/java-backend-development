@@ -1,0 +1,16 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: sms-service
+  rabbitmq: # 只是接收消息而不发送，所以不用配置template相关内容。
+    host: 127.0.0.1
+    username: /xxx
+    password: xxx
+    virtual-host: /xxx
+xxx:
+  sms:
+    accessKeyId: LTAI4G5gEzUdFWcXPEXQqwh1 # 阿里云RAM访问控制里生成的accessKeyId
+    accessKeySecret: wXEW48C8DoHeN362YbVXPMkvi9rGah # 阿里云RAM访问控制里生成的AccessKeySecret
+    signName: XXX商城 # 阿里云短信服务自定义的签名名称
+    verifyCodeTemplate: SMS_190215386 # 阿里云短信服务自定义的模板名称

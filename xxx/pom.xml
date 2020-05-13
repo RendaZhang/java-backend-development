@@ -16,6 +16,7 @@
         <module>xxx-search</module>
         <module>xxx-goods-web</module>
         <module>xxx-user</module>
+        <module>xxx-sms-service</module>
     </modules>
     <packaging>pom</packaging>
 

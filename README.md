@@ -1,10 +1,10 @@
-## Java后台开发：Java框架，JavaWeb以及数据库相关的代码。*持续更新中...*
+## Java 后台开发：Java 框架，JavaWeb 以及数据库相关的代码。*持续更新中...*
 ***
 ### 环境简述：
 - 使用了 Intellij Idea 作为后台开发工具，HBuilder X 作为前端开发工具
 - 使用了 Maven 作为项目管理工具
 - 使用了 Postman 进行 Rest 相关的测试
-- 模拟服务器搭建在跟开发同一个电脑使用 localhost 连接，或者使用虚拟机 (Linux CentOS6) 搭建服务器，或者使用另外一台双系统 (Linux Ubuntu18 + Windows10) 的电脑来搭建服务器，连接的都是同一个 WIFI。
+- 模拟服务器可以选择搭建在跟开发同一个电脑使用 localhost 连接，或者使用虚拟机 (Linux CentOS6) 搭建服务器，或者使用另外一台双系统 (Linux Ubuntu18 + Windows10) 的电脑来搭建服务器，连接的都是同一个 WIFI。
     - 使用 FileZilla 作为 FTP 软件传输开发部署相关的文件。
     - 使用 secureCRT 在 Windows 下登录 UNIX 或 Linux 服务器主机
 ***
@@ -29,8 +29,7 @@
 + `xxx`: xxx 商城项目的后端代码
 ***
 ### 补充：
-- 消息管理系统使用 RabbitMQ 为底层的 Spring AMQP 框架，实现搜索微服务、商品静态页微服务的数据同步。
-- 使用了 Nginx 根据域名进行反向代理，对应关系：
+- 反向代理web服务使用了 Nginx 网页服务器软件。 根据域名进行反向代理，对应关系：
 <table border="1">
     <thead>
         <tr>
@@ -41,27 +40,27 @@
     <tbody>
         <tr align="left">
             <td>image.xxx.com</td>
-            <td>图片服务器，默认端口22122</td>
+            <td>图片服务器，默认端口 22122</td>
         </tr>
         <tr align="left">
             <td>manage.xxx.com</td>
-            <td>后台管理系统服务器，默认端口9091</td>
+            <td>后台管理系统服务器，默认端口 9091</td>
         </tr>
         <tr align="left">
             <td>www.xxx.com</td>
-            <td>门户系统服务器，默认端口9002</td>
+            <td>门户系统服务器，默认端口 9002</td>
         </tr>"
         <tr align="left">
             <td>www.xxx.com/item</td>
-            <td>静态页微服务，默认端口8084</td>
+            <td>静态页微服务，默认端口 8084</td>
         </tr>
         <tr align="left">
             <td>api.xxx.com</td>
-            <td>网关，默认端口10010</td>
+            <td>网关，默认端口 10010</td>
         </tr>
         <tr align="left">
             <td>api.xxx.com/api/upload</td>
-            <td>图片上传微服务，默认端口8082</td>
+            <td>图片上传微服务，默认端口 8082</td>
         </tr>
         <tfoot>
             <td colspan="2">
@@ -73,34 +72,39 @@
         </tfoot>
     </tbody>
 </table>
-
+- 消息管理系统 (MQ) 使用 RabbitMQ 为底层的 Spring AMQP 框架。
+    + 实现搜索微服务、商品静态页微服务的数据同步。
+    + 实现异步发送方式进行短信发送，提高了程序的响应速度。
 - 微服务注册中心 (xxx-registry) 使用 SpringCloud Eureka，默认端口10086。
     + 可以开启集群以增强可用性
     + 取消把注册中心自己注册到 Eureka 服务列表
     + 开发阶段关闭自我保护
 - 网关 (xxx-gateway) 使用 Spring Cloud Zuul 网关或者 Spring Cloud GateWay 网关。
-    + 使用了 CorsFilter 解决跨域问题，Rest请求需要配置对应的域名，否则使会返回403 - Invalid CORS request
+    + 使用了 CorsFilter 解决跨域问题，Rest 请求需要配置对应的域名，否则使会返回 403 - Invalid CORS request
     + 以下微服务都经过网关：
-        + 搜索微服务 -- api.xxx.com/search 默认端口8083
-        + 商品微服务 -- api.xxx.com/item 默认端口8081
-        + 用户微服务 -- api.xxx.com/user 默认端口8085
+        + 搜索微服务 -- api.xxx.com/search 默认端口 8083
+        + 商品微服务 -- api.xxx.com/item 默认端口 8081
+        + 用户微服务 -- api.xxx.com/user 默认端口 8085
     + 网关忽略了图片上传微服务，避免了高并发时的网络堵塞
-- 图片服务器使用了 FastDFS 分布式文件系统，配置在 Linux 虚拟机中或者另外一台电脑里。
+- 图片服务器使用了 FastDFS 分布式文件系统。
 - 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务。
     + 绕过了网关，重新配置了 CorsFilter
-- 搜索微服务 (search-service) 使用了 ElasticSearch 全文搜索引擎作为搜索服务器，提高了检索响应时间，配置在 Linux 虚拟机或另外一台电脑里。
+- 搜索微服务 (search-service) 使用了 ElasticSearch 全文搜索引擎作为搜索服务器，提高了检索响应时间。
 - 静态页微服务 (goods-web) 使用 Thymeleaf 实现静态化。
-    + 静态的HTML页面部署在本地Nginx中，从而大大提高并发能力，减小tomcat压力
+    + 静态的 HTML 页面部署在本地 Nginx 中，从而大大提高并发能力，减小 tomcat 压力
     + 静态页微服务可以用来展示浏览量比较大而且并发高的商品详情页面
 - 商品微服务 (item-service) 使用mySQL作为基础的数据库，提供了存取数据库中的商品相关数据的服务。
-    + 当商品微服务对商品进行写操作，需要发送商品id 到 RabbitMQ，通知其它相关的微服务
+    + 当商品微服务对商品进行写操作，需要发送商品 id 到 RabbitMQ，通知其它相关的微服务
     + 使用了 Hikari 作为数据库连接池，提高了在并发较高时候的响应能力
     + 另外做了一些数据库表的优化：
-        + 数据库中避免使用 Foreign Key（外键），通过在Service业务逻辑里面维护相关联的两张表
-        + 把一个逻辑表中数据很大的元素拆分出来成为一个独立的存储在SQL数据库的表，增加了查询效率
-        + 把一个逻辑表中‘写’频率较高的元素拆分出来成为一个独立的存储在SQL数据库的表，减少读写之间的干扰
-        + 使用了电商中的SKU和SPU的概念作为相关表的设计
+        + 数据库中避免使用 Foreign Key（外键），通过在 Service 业务逻辑里面维护相关联的两张表
+        + 把一个逻辑表中数据很大的元素拆分出来成为一个独立的存储在 SQL 数据库的表，增加了查询效率
+        + 把一个逻辑表中‘写’频率较高的元素拆分出来成为一个独立的存储在 SQL 数据库的表，减少读写之间的干扰
+        + 使用了电商中的 SKU 和 SPU 的概念作为相关表的设计
 - 用户微服务 (user-service) 为用户中心，实现基本的登录和注册以及其他与用户有关的功能
-    + 使用面向接口的开发方式
+    + 使用面向接口的开发方式，实现数据校验，短信验证码，用户注册，根据用户名和密码查询用户
+- 短信微服务 (sms-service) 实现短信发送功能，基于阿里云的短信服务。在阿里云充值了10块钱。
+    + 为了安全起见，采用阿里云的RAM角色管理系统来控制 AccessKey 以及相关权限，开发测试完成后会移除相关权限。
+    + 其它服务要发送短信时，通过MQ通知短信微服务；短信服务监听MQ消息，收到消息后发送短信。
 
 
