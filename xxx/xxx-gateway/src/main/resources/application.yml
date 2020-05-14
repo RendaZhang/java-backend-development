@@ -19,6 +19,9 @@ zuul:
     - upload-service
   add-host-header: true # 携带请求本身的头信息
   sensitive-headers: # 配置禁止使用的头信息，这里设置为 null，否则 set-cookie 无效。
+  host:
+    socket-timeout-millis: 10000 # socket 超时为 10 秒
+    connect-timeout-millis: 6000 # HTTP 连接超时为 6 秒。要比 Hystrix 的大
 hystrix:
   command:
     default:
@@ -26,3 +29,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000 # 设置hystrix的超时时间为5000ms
+ribbon:
+  ReadTimeout: 4000 # 注意ribbon的超时时间要小于zuul超时时间
+  ConnectTimeout: 4000
