@@ -14,6 +14,7 @@ zuul:
     item-service: /item/** # 商品微服务的映射路径
     search-service: /search/** # 搜索功能微服务的映射路径
     user-service: /user/** # 用户微服务的映射路径
+    auth-service: /auth/** # 授权中心微服务
   ignored-services:
     - upload-service # 忽略upload-service服务，避免网络阻塞
 hystrix:
