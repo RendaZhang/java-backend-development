@@ -18,6 +18,7 @@
         <module>xxx-user</module>
         <module>xxx-sms-service</module>
         <module>xxx-auth</module>
+        <module>xxx-cart</module>
     </modules>
     <packaging>pom</packaging>
 
