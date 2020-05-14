@@ -519,6 +519,12 @@ axios.defaults.withCredentials = true
 // 配置对象
 const ly = xxx = {
     /**
+     * 封装一个校验的方法来多次校验用户登录状态
+     */
+    verifyUser() {
+        return this.http.get("/auth/verify");
+    },
+    /**
      * 对encodeURI()编码过的 URI 进行解码。并且获取其中的指定参数
      * @param name
      * @returns {*}
