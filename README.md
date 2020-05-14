@@ -1,4 +1,4 @@
-## Java 后台开发：Java 框架，JavaWeb 以及数据库相关的代码。*持续更新中...*
+## Java 后台开发：Java 框架，微服务框架 以及数据库相关的代码。*持续更新中...*
 ***
 ### 环境简述：
 - 使用了 Intellij Idea 作为后台开发工具，HBuilder X 作为前端开发工具
@@ -69,6 +69,7 @@
                 <ol>
                     <li>使用 Nginx 对门户系统的商品详情请求进行监听，并指向本地 Nginx 的静态页面。如果本地没找到请求的页面, 把以 /item 开头的商品详情请求，反向代理到静态页微服务。</li>
                     <li>在 Nginx 把经过网关微服务的以 /api/upload 开头的请求，转到图片上传微服务的真实地址。</li>
+                    <li>为了解决 cookie 域名计算出错问题，转发来自网关的请求时，携带自身的 host，而不是转发后的 host。</li>
                 </ol>
             </td>
         </tfoot>
@@ -84,7 +85,8 @@
     + 开发阶段关闭自我保护
 - 网关 (xxx-gateway) 使用 Spring Cloud Zuul 网关或者 Spring Cloud GateWay 网关。
     + 使用了 CorsFilter 解决跨域问题，Rest 请求需要配置对应的域名，否则使会返回 403 - Invalid CORS request
-    + 短信发送经过 MQ，消耗时间长容易超过默认一秒的熔断时间。设置 hystrix 的超时时间为两秒。
+    + 为了解决 cookie 域名计算出错问题，携带请求本身的头信息，以及配置‘敏感头’为空。
+    + 设置 hystrix 的超时时间为五秒。
     + 以下微服务都经过网关：
         + 商品微服务 -- api.xxx.com/item 默认端口 8081
         + 搜索微服务 -- api.xxx.com/search 默认端口 8083

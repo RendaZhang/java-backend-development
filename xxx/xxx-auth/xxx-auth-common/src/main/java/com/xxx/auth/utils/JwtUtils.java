@@ -16,7 +16,7 @@ public class JwtUtils {
      *
      * @param userInfo      载荷中的数据
      * @param privateKey    私钥
-     * @param expireMinutes 过期时间，单位秒
+     * @param expireMinutes 过期时间，单位分钟
      * @return
      * @throws Exception
      */
@@ -34,7 +34,7 @@ public class JwtUtils {
      *
      * @param userInfo      载荷中的数据
      * @param privateKey    私钥字节数组
-     * @param expireMinutes 过期时间，单位秒
+     * @param expireMinutes 过期时间，单位分钟
      * @return
      * @throws Exception
      */

@@ -14,6 +14,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--引入springMVC依赖，在com.xxx.user,api中增加Rest接口，这样减少消费者重复写api的代码-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.0.17.RELEASE</version>
+        </dependency>
         <!--引入 Hibernate Validator 实现服务端的数据校验-->
         <dependency>
             <groupId>org.hibernate.validator</groupId>

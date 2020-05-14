@@ -15,12 +15,14 @@ zuul:
     search-service: /search/** # 搜索功能微服务的映射路径
     user-service: /user/** # 用户微服务的映射路径
     auth-service: /auth/** # 授权中心微服务
-  ignored-services:
-    - upload-service # 忽略upload-service服务，避免网络阻塞
+  ignored-services: # 忽略upload-service服务，避免网络阻塞
+    - upload-service
+  add-host-header: true # 携带请求本身的头信息
+  sensitive-headers: # 配置禁止使用的头信息，这里设置为 null，否则 set-cookie 无效。
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 6000 # 设置hystrix的超时时间为2000ms
+            timeoutInMilliseconds: 5000 # 设置hystrix的超时时间为5000ms

@@ -109,7 +109,7 @@
         },
         methods:{
             login(){
-                xxx.http.post("/user/login",xxx.stringify(this.form))
+                xxx.http.post("/auth/accredit",xxx.stringify(this.form)) // 用户鉴权
                     .then(resp => {
                         if(resp.status === 200){
                             const url = xxx.getUrlParam("returnUrl");

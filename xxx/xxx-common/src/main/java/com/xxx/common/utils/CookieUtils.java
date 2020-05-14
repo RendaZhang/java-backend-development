@@ -182,6 +182,7 @@ public final class CookieUtils {
 			String[] ary = domainName.split("\\:");
 			domainName = ary[0];
 		}
+		logger.info("得到cookie的域名: " + domainName);
 		return domainName;
 	}
 
