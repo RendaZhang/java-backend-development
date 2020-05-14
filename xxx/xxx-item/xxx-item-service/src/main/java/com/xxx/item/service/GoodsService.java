@@ -53,6 +53,10 @@ public class GoodsService {
     private AmqpTemplate amqpTemplate;
     private static final Logger LOGGER = LoggerFactory.getLogger(GoodsService.class);
 
+    public Sku querySkuById(Long id) {
+        return this.skuMapper.selectByPrimaryKey(id);
+    }
+
     private void sendMessage(String type, Long id){
         // 发送消息
         try {

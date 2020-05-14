@@ -32,7 +32,7 @@ public class GoodsHtmlService {
      * @param id
      */
     public void deleteHtml(Long id) {
-        File file = new File("C:\\project\\nginx-1.14.0\\html\\item\\", id + ".html");
+        File file = new File("D:\\nginx-1.14.0\\html\\item\\", id + ".html");
         file.deleteOnExit();
     }
 

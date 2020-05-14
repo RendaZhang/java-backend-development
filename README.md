@@ -93,6 +93,7 @@
         + 搜索微服务 -- api.xxx.com/search 默认端口 8083
         + 用户微服务 -- api.xxx.com/user 默认端口 8085
         + 授权中心微服务 -- api.xxx.com/auth 默认端口 8087
+        + 购物车微服务 -- api.xxx.com/cart 默认端口 8088
     + 网关忽略了图片上传微服务，避免了高并发时的网络堵塞
 - 图片服务器使用了 FastDFS 分布式文件系统。
 - 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务。

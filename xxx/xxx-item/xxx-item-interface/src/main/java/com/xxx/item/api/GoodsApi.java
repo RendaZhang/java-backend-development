@@ -21,6 +21,14 @@ import java.util.List;
 public interface GoodsApi {
 
     /**
+     * 根据id查询sku
+     * @param id
+     * @return
+     */
+    @GetMapping("sku/{id}")
+    public Sku querySkuById(@PathVariable("id")Long id);
+
+    /**
      * 根据spu的id查询spu
      * @param id
      * @return
