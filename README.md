@@ -84,6 +84,7 @@
     + 取消把注册中心自己注册到 Eureka 服务列表
     + 开发阶段关闭自我保护
 - 网关 (xxx-gateway) 使用 Spring Cloud Zuul 网关或者 Spring Cloud GateWay 网关。
+    + 配置了前置过滤器来进行登录拦截，同时配置白名单。
     + 使用了 CorsFilter 解决跨域问题，Rest 请求需要配置对应的域名，否则使会返回 403 - Invalid CORS request
     + 为了解决 cookie 域名计算出错问题，携带请求本身的头信息，以及配置‘敏感头’为空。
     + 适当调大了 socket， http 连接，ribbon 和 hystrix 的超时时间，防止出现过于敏感的熔断。

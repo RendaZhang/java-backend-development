@@ -32,3 +32,15 @@ hystrix:
 ribbon:
   ReadTimeout: 4000 # 注意ribbon的超时时间要小于zuul超时时间
   ConnectTimeout: 4000
+xxx: # 自定义属性
+  jwt:
+    pubKeyPath:  D:\\tmp\\rsa\\rsa.pub # 公钥地址
+    cookieName: XXX_TOKEN # cookie的名称
+  filter:
+    allowPaths: # 配置拦截白名单
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
