@@ -16,22 +16,23 @@ zuul:
     user-service: /user/** # 用户微服务的映射路径
     auth-service: /auth/** # 授权中心微服务
     cart-service: /cart/** # 购物车微服务
+    order-service: /order/** # 订单微服务
   ignored-services: # 忽略upload-service服务，避免网络阻塞
     - upload-service
   add-host-header: true # 携带请求本身的头信息
   sensitive-headers: # 配置禁止使用的头信息，这里设置为 null，否则 set-cookie 无效。
   host:
-    socket-timeout-millis: 10000 # socket 超时为 10 秒
-    connect-timeout-millis: 6000 # HTTP 连接超时为 6 秒。要比 Hystrix 的大
+    socket-timeout-millis: 11000 # socket 超时为 11 秒
+    connect-timeout-millis: 10000 # HTTP 连接超时为 10 秒。要比 Hystrix 的大
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000 # 设置hystrix的超时时间为5000ms
+            timeoutInMilliseconds: 9000 # 设置 hystrix 的超时时间为 9 秒。要大于 ribbon 的 read + connect 总超时时间
 ribbon:
-  ReadTimeout: 4000 # 注意ribbon的超时时间要小于zuul超时时间
+  ReadTimeout: 4000
   ConnectTimeout: 4000
 xxx: # 自定义属性
   jwt:
@@ -46,3 +47,4 @@ xxx: # 自定义属性
       - /api/user/code
       - /api/item
       - /api/cart
+      - /api/order

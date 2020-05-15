@@ -89,11 +89,12 @@
     + 为了解决 cookie 域名计算出错问题，携带请求本身的头信息，以及配置‘敏感头’为空。
     + 适当调大了 socket， http 连接，ribbon 和 hystrix 的超时时间，防止出现过于敏感的熔断。
     + 以下微服务都经过网关：
-        + 商品微服务 -- api.xxx.com/item 默认端口 8081
-        + 搜索微服务 -- api.xxx.com/search 默认端口 8083
-        + 用户微服务 -- api.xxx.com/user 默认端口 8085
-        + 授权中心微服务 -- api.xxx.com/auth 默认端口 8087
-        + 购物车微服务 -- api.xxx.com/cart 默认端口 8088
+        + 商品微服务 -- api.xxx.com/api/item 默认端口 8081
+        + 搜索微服务 -- api.xxx.com/api/search 默认端口 8083
+        + 用户微服务 -- api.xxx.com/api/user 默认端口 8085
+        + 授权中心微服务 -- api.xxx.com/api/auth 默认端口 8087
+        + 购物车微服务 -- api.xxx.com/api/cart 默认端口 8088
+        + 订单微服务 -- api.xxx.com/api/order 默认端口 8089
     + 网关忽略了图片上传微服务，避免了高并发时的网络堵塞
 - 图片服务器使用了 FastDFS 分布式文件系统。
 - 图片上传微服务 (upload-service) 提供上传图片到图片服务器的服务。
@@ -124,4 +125,6 @@
 - 购物车微服务 (cart-service) 实现购物车相关功能。
     + 未登录状态下添加商品到购物车，基于 web 本地存储的方法
     + 登陆状态下添加商品到购物车，基于 MongoDB 文档型数据库
-
+- 订单微服务 (order-service) 实现订单相关以及微信支付的功能
+    + 直接复制已经写好的后台接口代码，然后基于项目进行修改。
+    + 配置 OpenAPI 规范的工具 Swagger 来实现 API 接口文档，使用 swagger-ui.html 可以直接查看和测试接口。
