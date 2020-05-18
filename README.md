@@ -1,7 +1,8 @@
 ## Java 后台开发：JavaWeb，微服务框架 以及数据库相关的代码。*持续更新中...*
 ***
 ### 环境简述：
-- 使用了 Intellij Idea 作为后台开发工具，Intellij WebStorm 作为前端开发工具
+- 使用了 Intellij Idea 作为后台开发工具，WebStorm 作为前端开发工具
+- 使用了 DataGrip 查看配置数据库
 - 使用了 Maven 作为项目管理工具
 - 使用了 Postman 进行 Rest 相关的测试
 - 模拟服务器可以选择搭建在跟开发同一个电脑使用 localhost 连接，或者使用虚拟机 (Linux CentOS6) 搭建服务器，或者使用另外一台双系统 (Linux Ubuntu18 + Windows10) 的电脑来搭建服务器，连接的都是同一个 WIFI。
