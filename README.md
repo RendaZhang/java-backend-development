@@ -1,7 +1,7 @@
 ## Java 后台开发：JavaWeb，微服务框架 以及数据库相关的代码。*持续更新中...*
 ***
 ### 环境简述：
-- 使用了 Intellij Idea 作为后台开发工具，WebStorm 作为前端开发工具
+- 使用了 IntelliJ Idea 作为后台开发工具，WebStorm 作为前端开发工具
 - 使用了 DataGrip 查看配置数据库
 - 使用了 Maven 作为项目管理工具
 - 使用了 Postman 进行 Rest 相关的测试
