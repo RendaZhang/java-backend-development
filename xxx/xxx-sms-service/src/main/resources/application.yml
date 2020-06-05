@@ -10,7 +10,7 @@ spring:
     virtual-host: /xxx
 xxx:
   sms:
-    accessKeyId: LTAI4G5gEzUdFWcXPEXQqwh1 # 阿里云RAM访问控制里生成的accessKeyId
-    accessKeySecret: wXEW48C8DoHeN362YbVXPMkvi9rGah # 阿里云RAM访问控制里生成的AccessKeySecret
+    accessKeyId: YOUR_ACCESSS_KEY_ID # 阿里云RAM访问控制里生成的accessKeyId
+    accessKeySecret: YOUR_ACCESS_KEY_SECRET # 阿里云RAM访问控制里生成的AccessKeySecret
     signName: XXX商城 # 阿里云短信服务自定义的签名名称
     verifyCodeTemplate: SMS_190215386 # 阿里云短信服务自定义的模板名称
